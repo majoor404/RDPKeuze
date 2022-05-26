@@ -156,5 +156,10 @@ namespace RDPKeuze
         {
             UpdateUi();
         }
+
+        private void linkLabel1_LinkGitHub(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/majoor404/RDPKeuze");
+        }
     }
 }

@@ -39,6 +39,7 @@
             this.computerlijst = new System.Windows.Forms.ComboBox();
             this.LocatiePlaatst = new System.Windows.Forms.Label();
             this.buttonReload = new System.Windows.Forms.Button();
+            this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // textBox
@@ -140,11 +141,23 @@
             this.buttonReload.UseVisualStyleBackColor = true;
             this.buttonReload.Click += new System.EventHandler(this.buttonReload_Click);
             // 
+            // linkLabelGitHub
+            // 
+            this.linkLabelGitHub.AutoSize = true;
+            this.linkLabelGitHub.Location = new System.Drawing.Point(17, 404);
+            this.linkLabelGitHub.Name = "linkLabelGitHub";
+            this.linkLabelGitHub.Size = new System.Drawing.Size(207, 13);
+            this.linkLabelGitHub.TabIndex = 14;
+            this.linkLabelGitHub.TabStop = true;
+            this.linkLabelGitHub.Text = "https://github.com/majoor404/RDPKeuze";
+            this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkGitHub);
+            // 
             // FormRdpKeuze
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(239, 400);
+            this.ClientSize = new System.Drawing.Size(239, 430);
+            this.Controls.Add(this.linkLabelGitHub);
             this.Controls.Add(this.buttonReload);
             this.Controls.Add(this.LocatiePlaatst);
             this.Controls.Add(this.computerlijst);
@@ -177,6 +190,7 @@
         private System.Windows.Forms.ComboBox computerlijst;
         private System.Windows.Forms.Label LocatiePlaatst;
         private System.Windows.Forms.Button buttonReload;
+        private System.Windows.Forms.LinkLabel linkLabelGitHub;
     }
 }
 
