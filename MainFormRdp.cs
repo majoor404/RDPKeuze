@@ -32,14 +32,14 @@ namespace RDPKeuze
             // save naar ronald.rdp
             File.WriteAllText("ronald.rdp", textBox.Text);
             // run ...
-            Process.Start(@"ronald.rdp");
+            _ = Process.Start(@"ronald.rdp");
         }
 
         private void EditLijst_Click(object sender, EventArgs e)
         {
             Lees_server_lijst();
             EditForm Edit = new EditForm();
-            Edit.ShowDialog();
+            _ = Edit.ShowDialog();
             Schrijf_server_lijst();
         }
 
@@ -51,7 +51,9 @@ namespace RDPKeuze
             foreach (server a in DataRdp.Server_lijst)
             {
                 if (!SectieLijst.Items.Contains(a._sectie))
-                    SectieLijst.Items.Add(a._sectie);
+                {
+                    _ = SectieLijst.Items.Add(a._sectie);
+                }
             }
 
             computerlijst.Items.Clear();
@@ -68,7 +70,9 @@ namespace RDPKeuze
                 if (a._sectie == SectieLijst.Text)
                 {
                     if (!computerlijst.Items.Contains(a._plaats))
-                        computerlijst.Items.Add(a._plaats);
+                    {
+                        _ = computerlijst.Items.Add(a._plaats);
+                    }
                 }
             }
         }
@@ -159,7 +163,7 @@ namespace RDPKeuze
 
         private void linkLabel1_LinkGitHub(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/majoor404/RDPKeuze");
+            _ = System.Diagnostics.Process.Start("https://github.com/majoor404/RDPKeuze");
         }
     }
 }

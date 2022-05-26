@@ -27,13 +27,7 @@ namespace RDPKeuze
                 arr[3] = a._sectie;
                 arr[4] = a._usernaam;
                 itm = new ListViewItem(arr);
-                ListView.Items.Add(itm);
-
-
-                //string b = $"{a._adres,-50}{a._domein,-30}{a._plaats,-50}{a._sectie,-30}{a._usernaam,-30}";
-                //string[] row = { $"{a._adres,-40}{a._domein,-10}{a._plaats,-40}{a._sectie,-5}{a._usernaam,-30}" };
-                //ListViewItem listItem = new ListViewItem(row);
-                //ListView.Items.Add(listItem);
+                _ = ListView.Items.Add(itm);
             }
         }
 
@@ -53,7 +47,7 @@ namespace RDPKeuze
             }
             else
             {
-                MessageBox.Show("selecteer geen regel");
+                _ = MessageBox.Show("selecteer geen regel");
             }
         }
 
@@ -113,7 +107,7 @@ namespace RDPKeuze
             }
         }
 
-        
+
         public void buttonSorteer_Click(object sender, EventArgs e)
         {
             DataRdp.Sorteer();
@@ -131,7 +125,7 @@ namespace RDPKeuze
             }
             else
             {
-                MessageBox.Show("selecteer een regel");
+                _ = MessageBox.Show("selecteer een regel");
             }
         }
     }
