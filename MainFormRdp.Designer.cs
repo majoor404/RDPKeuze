@@ -77,6 +77,7 @@
             this.SectieLijst.Location = new System.Drawing.Point(13, 28);
             this.SectieLijst.Name = "SectieLijst";
             this.SectieLijst.Size = new System.Drawing.Size(212, 21);
+            this.SectieLijst.Sorted = true;
             this.SectieLijst.TabIndex = 5;
             this.SectieLijst.SelectedIndexChanged += new System.EventHandler(this.SectieLijst_SelectedIndexChanged);
             // 
@@ -115,6 +116,7 @@
             this.computerlijst.Location = new System.Drawing.Point(12, 77);
             this.computerlijst.Name = "computerlijst";
             this.computerlijst.Size = new System.Drawing.Size(212, 21);
+            this.computerlijst.Sorted = true;
             this.computerlijst.TabIndex = 9;
             this.computerlijst.DropDown += new System.EventHandler(this.Computerlijst_DropDown);
             this.computerlijst.SelectedIndexChanged += new System.EventHandler(this.Computerlijst_SelectedIndexChanged);
