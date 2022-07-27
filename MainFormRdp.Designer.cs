@@ -55,7 +55,7 @@
             // 
             this.StartButton.Location = new System.Drawing.Point(13, 128);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(213, 43);
+            this.StartButton.Size = new System.Drawing.Size(213, 90);
             this.StartButton.TabIndex = 3;
             this.StartButton.Text = "Maak Contact";
             this.StartButton.UseVisualStyleBackColor = true;
