@@ -50,12 +50,13 @@
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(745, 606);
             this.textBox.TabIndex = 0;
+            this.textBox.Visible = false;
             // 
             // StartButton
             // 
             this.StartButton.Location = new System.Drawing.Point(13, 128);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(213, 90);
+            this.StartButton.Size = new System.Drawing.Size(378, 90);
             this.StartButton.TabIndex = 3;
             this.StartButton.Text = "Maak Contact";
             this.StartButton.UseVisualStyleBackColor = true;
@@ -77,7 +78,7 @@
             this.SectieLijst.FormattingEnabled = true;
             this.SectieLijst.Location = new System.Drawing.Point(13, 28);
             this.SectieLijst.Name = "SectieLijst";
-            this.SectieLijst.Size = new System.Drawing.Size(212, 21);
+            this.SectieLijst.Size = new System.Drawing.Size(378, 21);
             this.SectieLijst.Sorted = true;
             this.SectieLijst.TabIndex = 5;
             this.SectieLijst.SelectedIndexChanged += new System.EventHandler(this.SectieLijst_SelectedIndexChanged);
@@ -95,7 +96,7 @@
             // 
             this.EditLijst.Location = new System.Drawing.Point(13, 346);
             this.EditLijst.Name = "EditLijst";
-            this.EditLijst.Size = new System.Drawing.Size(213, 43);
+            this.EditLijst.Size = new System.Drawing.Size(378, 43);
             this.EditLijst.TabIndex = 7;
             this.EditLijst.Text = "Edit";
             this.EditLijst.UseVisualStyleBackColor = true;
@@ -116,7 +117,7 @@
             this.computerlijst.FormattingEnabled = true;
             this.computerlijst.Location = new System.Drawing.Point(12, 77);
             this.computerlijst.Name = "computerlijst";
-            this.computerlijst.Size = new System.Drawing.Size(212, 21);
+            this.computerlijst.Size = new System.Drawing.Size(379, 21);
             this.computerlijst.Sorted = true;
             this.computerlijst.TabIndex = 9;
             this.computerlijst.DropDown += new System.EventHandler(this.Computerlijst_DropDown);
@@ -135,7 +136,7 @@
             // 
             this.buttonReload.Location = new System.Drawing.Point(15, 309);
             this.buttonReload.Name = "buttonReload";
-            this.buttonReload.Size = new System.Drawing.Size(209, 31);
+            this.buttonReload.Size = new System.Drawing.Size(376, 31);
             this.buttonReload.TabIndex = 12;
             this.buttonReload.Text = "Reload";
             this.buttonReload.UseVisualStyleBackColor = true;
@@ -144,7 +145,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(17, 404);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(94, 408);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(207, 13);
             this.linkLabelGitHub.TabIndex = 14;
@@ -156,7 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(239, 430);
+            this.ClientSize = new System.Drawing.Size(403, 430);
             this.Controls.Add(this.linkLabelGitHub);
             this.Controls.Add(this.buttonReload);
             this.Controls.Add(this.LocatiePlaatst);

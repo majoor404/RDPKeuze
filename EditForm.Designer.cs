@@ -51,6 +51,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
+            this.VncToggle = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -244,11 +245,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonSorteer_Click);
             // 
+            // VncToggle
+            // 
+            this.VncToggle.AutoSize = true;
+            this.VncToggle.Location = new System.Drawing.Point(104, 537);
+            this.VncToggle.Name = "VncToggle";
+            this.VncToggle.Size = new System.Drawing.Size(98, 17);
+            this.VncToggle.TabIndex = 21;
+            this.VncToggle.Text = "Open Met VNC";
+            this.VncToggle.UseVisualStyleBackColor = true;
+            this.VncToggle.CheckedChanged += new System.EventHandler(this.VncToggle_CheckedChanged);
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 563);
+            this.Controls.Add(this.VncToggle);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonCopy);
             this.Controls.Add(this.label6);
@@ -300,5 +313,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox VncToggle;
     }
 }

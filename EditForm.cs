@@ -62,6 +62,8 @@ namespace RDPKeuze
                 textBox2.Text = DataRdp.Server_lijst[index]._plaats;
                 textBox1.Text = DataRdp.Server_lijst[index]._sectie;
                 textBox4.Text = DataRdp.Server_lijst[index]._usernaam;
+
+                VncToggle.Checked = textBox5.Text == "VNC";
             }
             else
             {
@@ -126,6 +128,23 @@ namespace RDPKeuze
             else
             {
                 _ = MessageBox.Show("selecteer een regel");
+            }
+        }
+
+        private void VncToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if(VncToggle.Checked)
+            {
+                textBox5.Text = "VNC";
+                textBox5.Enabled = false;
+                label5.Text = "Type";
+                label4.Text = "Wachtwoord";
+            }
+            else
+            {
+                textBox5.Enabled = true;
+                label5.Text = "Domein";
+                label4.Text = "Gebruikers naam";
             }
         }
     }

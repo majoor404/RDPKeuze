@@ -12,6 +12,7 @@ namespace RDPKeuze
     public partial class FormRdpKeuze : Form
     {
         private List<server> server_lijst = new List<server>();
+        private string vnc_adres = "";
 
         public FormRdpKeuze()
         {
@@ -29,10 +30,26 @@ namespace RDPKeuze
         // start button
         private void Button3_Click(object sender, EventArgs e)
         {
-            // save naar ronald.rdp
-            File.WriteAllText("ronald.rdp", textBox.Text);
-            // run ...
-            _ = Process.Start(@"ronald.rdp");
+            if (!LocatiePlaatst.Text.Contains("VNC"))
+            {
+
+                // save naar ronald.rdp
+                File.WriteAllText("ronald.rdp", textBox.Text);
+                // run ...
+                _ = Process.Start(@"ronald.rdp");
+            }
+            else
+            {
+                Process process = new Process
+                {
+                    StartInfo =
+              {
+                  FileName = "vncviewer.exe",
+                  Arguments = vnc_adres
+              }
+                };
+                _ = process.Start();
+            }
         }
 
         private void EditLijst_Click(object sender, EventArgs e)
@@ -83,34 +100,46 @@ namespace RDPKeuze
 
             foreach (server a in DataRdp.Server_lijst)
             {
-
-
                 if (a._plaats == computerlijst.Text)
                 {
-                    LocatiePlaatst.Text = a._adres;
-
-                    textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
-                    textBoxTemp.Text = textBox.Text;
-                    textBox.Clear();
-
-                    textBox.AppendText("full address:s:" + a._adres);
-                    textBox.AppendText(Environment.NewLine);
-
-                    textBox.AppendText("username:s:" + a._usernaam);
-                    textBox.AppendText(Environment.NewLine);
-
-                    textBox.AppendText("domain:s:" + a._domein);
-                    textBox.AppendText(Environment.NewLine);
-
-                    int aantal_regels = textBoxTemp.Lines.Count();
-                    for (int i = 0; i < aantal_regels - 3; i++)
+                    if (a._domein != "VNC")
                     {
-                        textBox.AppendText(textBoxTemp.Lines[i + 3]);
+                        LocatiePlaatst.Text = a._adres;
+
+                        textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
+                        textBoxTemp.Text = textBox.Text;
+                        textBox.Clear();
+
+                        textBox.AppendText("full address:s:" + a._adres);
                         textBox.AppendText(Environment.NewLine);
+
+                        textBox.AppendText("username:s:" + a._usernaam);
+                        textBox.AppendText(Environment.NewLine);
+
+                        textBox.AppendText("domain:s:" + a._domein);
+                        textBox.AppendText(Environment.NewLine);
+
+                        int aantal_regels = textBoxTemp.Lines.Count();
+                        for (int i = 0; i < aantal_regels - 3; i++)
+                        {
+                            textBox.AppendText(textBoxTemp.Lines[i + 3]);
+                            textBox.AppendText(Environment.NewLine);
+                        }
+                        textBox.SelectionStart = 1;
+                        textBox.ScrollToCaret();
+                        break;
                     }
-                    textBox.SelectionStart = 1;
-                    textBox.ScrollToCaret();
-                    break;
+                    else
+                    {
+                        // vnc
+                        LocatiePlaatst.Text = a._adres + " Met VNC, passwoord op klembord";
+                        vnc_adres = a._adres;
+
+                        // After this call, the data (string) is placed on the clipboard and tagged
+                        // with a data format of "Text".
+                        Clipboard.SetData(DataFormats.Text, a._usernaam);
+
+                    }
                 }
             }
         }
