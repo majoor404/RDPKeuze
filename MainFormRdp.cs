@@ -50,6 +50,7 @@ namespace RDPKeuze
                 };
                 _ = process.Start();
             }
+            UpdateUi();
         }
 
         private void EditLijst_Click(object sender, EventArgs e)
