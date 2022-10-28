@@ -100,7 +100,7 @@ namespace RDPKeuze
 
             foreach (server a in DataRdp.Server_lijst)
             {
-                if (a._plaats == computerlijst.Text)
+                if (a._plaats == computerlijst.Text && a._sectie == SectieLijst.Text)
                 {
                     if (a._domein != "VNC")
                     {
