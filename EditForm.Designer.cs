@@ -52,6 +52,9 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.VncToggle = new System.Windows.Forms.CheckBox();
+            this.ButtonImport = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.textBoxImport = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -140,7 +143,7 @@
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(120, 23);
             this.buttonSave.TabIndex = 11;
-            this.buttonSave.Text = "Save";
+            this.buttonSave.Text = "Save Huidige Regel";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
@@ -160,7 +163,7 @@
             this.VoegToeBut.Name = "VoegToeBut";
             this.VoegToeBut.Size = new System.Drawing.Size(120, 23);
             this.VoegToeBut.TabIndex = 13;
-            this.VoegToeBut.Text = "Voeg Toe";
+            this.VoegToeBut.Text = "Voeg Nieuwe Toe";
             this.VoegToeBut.UseVisualStyleBackColor = true;
             this.VoegToeBut.Click += new System.EventHandler(this.VoegToeBut_Click);
             // 
@@ -256,11 +259,37 @@
             this.VncToggle.UseVisualStyleBackColor = true;
             this.VncToggle.CheckedChanged += new System.EventHandler(this.VncToggle_CheckedChanged);
             // 
+            // ButtonImport
+            // 
+            this.ButtonImport.Location = new System.Drawing.Point(278, 536);
+            this.ButtonImport.Name = "ButtonImport";
+            this.ButtonImport.Size = new System.Drawing.Size(246, 23);
+            this.ButtonImport.TabIndex = 22;
+            this.ButtonImport.Text = "Import Rdp file";
+            this.ButtonImport.UseVisualStyleBackColor = true;
+            this.ButtonImport.Click += new System.EventHandler(this.ButtonImport_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
+            // 
+            // textBoxImport
+            // 
+            this.textBoxImport.Location = new System.Drawing.Point(16, 43);
+            this.textBoxImport.Multiline = true;
+            this.textBoxImport.Name = "textBoxImport";
+            this.textBoxImport.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxImport.Size = new System.Drawing.Size(772, 349);
+            this.textBoxImport.TabIndex = 23;
+            this.textBoxImport.Visible = false;
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 563);
+            this.Controls.Add(this.textBoxImport);
+            this.Controls.Add(this.ButtonImport);
             this.Controls.Add(this.VncToggle);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonCopy);
@@ -314,5 +343,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox VncToggle;
+        private System.Windows.Forms.Button ButtonImport;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.TextBox textBoxImport;
     }
 }

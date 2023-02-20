@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace RDPKeuze
@@ -16,6 +19,7 @@ namespace RDPKeuze
 
         private void EditForm_Shown(object sender, EventArgs e)
         {
+            textBoxImport.Visible = false;
             ListView.Items.Clear();
             string[] arr = new string[5];
             ListViewItem itm;
@@ -38,17 +42,26 @@ namespace RDPKeuze
 
         private void VoegToeBut_Click(object sender, EventArgs e)
         {
-            if (ListView.SelectedItems.Count == 0)
+
+            if (TestDubbel(textBox3.Text, textBox2.Text))
             {
-                server a = new server(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
-                DataRdp.Server_lijst.Add(a);
-                EditForm_Shown(this, null);
-                _change = true;
+                _ = MessageBox.Show("Adres + Naam bestaat al in lijst");
+                return;
             }
-            else
+
+            if (textBox1.Text == "")
             {
-                _ = MessageBox.Show("selecteer geen regel");
+                _ = MessageBox.Show("Vul Sectie in voor \"Voeg toe\"");
+                return;
             }
+
+            ListView.SelectedItems.Clear();
+
+            server a = new server(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
+            DataRdp.Server_lijst.Add(a);
+            EditForm_Shown(this, null);
+            _change = true;
+            textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text = "";
         }
 
         private void ListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,26 +80,38 @@ namespace RDPKeuze
             }
             else
             {
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                textBox5.Text = "";
+                textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text = "";
             }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (ListView.SelectedItems.Count > 0)
+            if (textBox1.Text == "")
             {
-                DataRdp.Server_lijst[index]._adres = textBox3.Text;
-                DataRdp.Server_lijst[index]._domein = textBox5.Text;
-                DataRdp.Server_lijst[index]._plaats = textBox2.Text;
-                DataRdp.Server_lijst[index]._sectie = textBox1.Text;
-                DataRdp.Server_lijst[index]._usernaam = textBox4.Text;
-                EditForm_Shown(this, null);
-                _change = true;
+                _ = MessageBox.Show("Vul Sectie in voor \"Save\"");
+                return;
             }
+            // test of het al bestaat in lijst
+            if (!TestDubbel(textBox3.Text, textBox2.Text))
+            {
+                if (ListView.SelectedItems.Count > 0)
+                {
+                    DataRdp.Server_lijst[index]._adres = textBox3.Text;
+                    DataRdp.Server_lijst[index]._domein = textBox5.Text;
+                    DataRdp.Server_lijst[index]._plaats = textBox2.Text;
+                    DataRdp.Server_lijst[index]._sectie = textBox1.Text;
+                    DataRdp.Server_lijst[index]._usernaam = textBox4.Text;
+                    EditForm_Shown(this, null);
+                    _change = true;
+                }
+            }
+            else
+            {
+                _ = MessageBox.Show("Naam en Adres bestaan al in lijst");
+            }
+
+
+
         }
 
         private void buttonDel_Click(object sender, EventArgs e)
@@ -133,7 +158,7 @@ namespace RDPKeuze
 
         private void VncToggle_CheckedChanged(object sender, EventArgs e)
         {
-            if(VncToggle.Checked)
+            if (VncToggle.Checked)
             {
                 textBox5.Text = "VNC";
                 textBox5.Enabled = false;
@@ -146,6 +171,55 @@ namespace RDPKeuze
                 label5.Text = "Domein";
                 label4.Text = "Gebruikers naam";
             }
+        }
+
+        private void ButtonImport_Click(object sender, EventArgs e)
+        {
+            textBoxImport.Clear();
+            OpenFileDialog open = new OpenFileDialog
+            {
+                Title = "Open Rdp",
+                Filter = "Rdp files (*.rdp)|*.rdp"
+            };
+
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                //textBoxImport.Visible = true;
+                textBoxImport.Text = File.ReadAllText(open.FileName);
+            }
+
+            textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text = "";
+
+            // zoek nu items en zet in textboxén
+            for (int i = 0; i < textBoxImport.Lines.Count() - 1; i++)
+            {
+                string regel = textBoxImport.Lines[i].Trim();
+
+                if (regel.Length > 15 && regel.Substring(0, 15) == "full address:s:")
+                {
+                    textBox3.Text = regel.Substring(15);
+                }
+
+                if (regel.Length > 11 && regel.Substring(0, 11) == "username:s:")
+                {
+                    textBox4.Text = regel.Substring(11);
+                }
+
+                textBox2.Text = Path.GetFileNameWithoutExtension(open.FileName);
+
+            }
+        }
+
+        private bool TestDubbel(string adres, string plaats)
+        {
+            foreach (server a in DataRdp.Server_lijst)
+            {
+                if (a._adres == adres && a._plaats == plaats)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
