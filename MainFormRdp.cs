@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 
@@ -11,18 +9,17 @@ namespace RDPKeuze
 {
     public partial class FormRdpKeuze : Form
     {
-        private List<server> server_lijst = new List<server>();
         private string vnc_adres = "";
 
         public FormRdpKeuze()
         {
             InitializeComponent();
-            DataRdp.Server_lijst = server_lijst;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             // laad ronald.rdp in textbox
+            //DataRdp.Lees_server_lijst(); zit in updateUI
             textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
             UpdateUi();
         }
@@ -55,28 +52,31 @@ namespace RDPKeuze
 
         private void EditLijst_Click(object sender, EventArgs e)
         {
-            Lees_server_lijst();
+            DataRdp.Lees_server_lijst();
             EditForm Edit = new EditForm();
             _ = Edit.ShowDialog();
-            Schrijf_server_lijst();
         }
 
         public void UpdateUi()
         {
-            Lees_server_lijst();
-
+            DataRdp.Lees_server_lijst();
             SectieLijst.Items.Clear();
+            AutoCompleteStringCollection data = new AutoCompleteStringCollection();
+
             foreach (server a in DataRdp.Server_lijst)
             {
                 if (!SectieLijst.Items.Contains(a._sectie))
                 {
                     _ = SectieLijst.Items.Add(a._sectie);
                 }
+                _ = data.Add(a._plaats);
             }
 
             computerlijst.Items.Clear();
-            computerlijst.Text = "";
+            computerlijst.SelectedIndex = -1;
             LocatiePlaatst.Text = "";
+
+            textBoxZoek.AutoCompleteCustomSource = data;
         }
 
         private void Computerlijst_DropDown(object sender, EventArgs e)
@@ -145,45 +145,12 @@ namespace RDPKeuze
             }
         }
 
-        public void Lees_server_lijst()
-        {
-            server_lijst.Clear();
-            try
-            {
-                using (Stream stream = File.Open("data.bin", FileMode.Open))
-                {
-                    BinaryFormatter bin = new BinaryFormatter();
-
-                    server_lijst = (List<server>)bin.Deserialize(stream);
-                }
-                DataRdp.Server_lijst = server_lijst;
-            }
-            catch (IOException)
-            {
-            }
-        }
-
-        public void Schrijf_server_lijst()
-        {
-            try
-            {
-                using (Stream stream = File.Open("data.bin", FileMode.Create))
-                {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    bin.Serialize(stream, server_lijst);
-                }
-            }
-            catch (IOException)
-            {
-            }
-            UpdateUi(); // zet alles in form weer juist met laatste data
-        }
-
         private void SectieLijst_SelectedIndexChanged(object sender, EventArgs e)
         {
             computerlijst.Items.Clear();
-            computerlijst.Text = "";
+            computerlijst.SelectedIndex = -1;
             LocatiePlaatst.Text = "";
+            textBoxZoek.Text = "";
         }
 
         private void buttonReload_Click(object sender, EventArgs e)
@@ -194,6 +161,54 @@ namespace RDPKeuze
         private void linkLabel1_LinkGitHub(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _ = System.Diagnostics.Process.Start("https://github.com/majoor404/RDPKeuze");
+        }
+
+        private void textBoxZoek_Enter(object sender, EventArgs e)
+        {
+            if (textBoxZoek.Text.Length == 0)
+            {
+                SectieLijst.SelectedIndex = -1;
+                computerlijst.SelectedIndex = -1;
+            }
+        }
+
+        private void ButGo_Click(object sender, EventArgs e)
+        {
+            foreach (server a in DataRdp.Server_lijst)
+            {
+                //if (a._plaats == textBoxZoek.Text)
+                if (a._plaats.ToLower().Contains(textBoxZoek.Text.ToLower()))
+                {
+                    SectieLijst.Text = a._sectie;
+
+                    Computerlijst_DropDown(this, null);
+
+                    for (int i = 0; i < computerlijst.Items.Count; i++)
+                    {
+
+                        if (computerlijst.Items[i].ToString() == a._plaats)
+                        {
+                            computerlijst.SelectedIndex = i;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        private void textBoxZoek_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ButGo_Click(this, null);
+            }
+        }
+
+        private void textBoxZoek_Leave(object sender, EventArgs e)
+        {
+            if(textBoxZoek.Text.Length > 2)
+                ButGo_Click(this, null);
         }
     }
 }

@@ -10,7 +10,6 @@ namespace RDPKeuze
     public partial class EditForm : Form
     {
         private int index = -1;
-        public bool _change = false;
 
         public EditForm()
         {
@@ -59,8 +58,8 @@ namespace RDPKeuze
 
             server a = new server(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
             DataRdp.Server_lijst.Add(a);
+            DataRdp.Schrijf_server_lijst();
             EditForm_Shown(this, null);
-            _change = true;
             textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text = "";
         }
 
@@ -101,8 +100,8 @@ namespace RDPKeuze
                     DataRdp.Server_lijst[index]._plaats = textBox2.Text;
                     DataRdp.Server_lijst[index]._sectie = textBox1.Text;
                     DataRdp.Server_lijst[index]._usernaam = textBox4.Text;
+                    DataRdp.Schrijf_server_lijst();
                     EditForm_Shown(this, null);
-                    _change = true;
                 }
             }
             else
@@ -128,8 +127,8 @@ namespace RDPKeuze
                     textBox3.Text = "";
                     textBox4.Text = "";
                     textBox5.Text = "";
+                    DataRdp.Schrijf_server_lijst();
                     EditForm_Shown(this, null);
-                    _change = true;
                 }
             }
         }
@@ -148,7 +147,6 @@ namespace RDPKeuze
                 server a = new server(textBox1.Text, "copy " + textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
                 DataRdp.Server_lijst.Add(a);
                 EditForm_Shown(this, null);
-                _change = true;
             }
             else
             {
