@@ -167,7 +167,7 @@
             // 
             // textBoxZoek
             // 
-            this.textBoxZoek.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBoxZoek.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.textBoxZoek.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxZoek.Location = new System.Drawing.Point(12, 166);
@@ -198,7 +198,7 @@
             this.ButGo.Text = "Go";
             this.ButGo.UseVisualStyleBackColor = true;
             this.ButGo.Visible = false;
-            this.ButGo.Click += new System.EventHandler(this.ButGo_Click);
+            this.ButGo.Click += new System.EventHandler(this.GaZoeken);
             // 
             // FormRdpKeuze
             // 

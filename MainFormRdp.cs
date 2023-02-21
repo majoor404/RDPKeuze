@@ -165,14 +165,15 @@ namespace RDPKeuze
 
         private void textBoxZoek_Enter(object sender, EventArgs e)
         {
-            if (textBoxZoek.Text.Length == 0)
-            {
-                SectieLijst.SelectedIndex = -1;
-                computerlijst.SelectedIndex = -1;
-            }
+            UpdateUi();
+            //if (textBoxZoek.Text.Length == 0)
+            //{
+            //    SectieLijst.SelectedIndex = -1;
+            //    computerlijst.SelectedIndex = -1;
+            //}
         }
 
-        private void ButGo_Click(object sender, EventArgs e)
+        private void GaZoeken(object sender, EventArgs e)
         {
             foreach (server a in DataRdp.Server_lijst)
             {
@@ -201,14 +202,14 @@ namespace RDPKeuze
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ButGo_Click(this, null);
+                GaZoeken(this, null);
             }
         }
 
         private void textBoxZoek_Leave(object sender, EventArgs e)
         {
-            if(textBoxZoek.Text.Length > 2)
-                ButGo_Click(this, null);
+            if(textBoxZoek.Text.Length > 1)
+                GaZoeken(this, null);
         }
     }
 }
