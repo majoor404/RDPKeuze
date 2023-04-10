@@ -211,5 +211,10 @@ namespace RDPKeuze
             if(textBoxZoek.Text.Length > 1)
                 GaZoeken(this, null);
         }
+
+        private void FormRdpKeuze_Shown(object sender, EventArgs e)
+        {
+            textBoxZoek.Focus();
+        }
     }
 }
