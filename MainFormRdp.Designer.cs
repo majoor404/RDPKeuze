@@ -167,8 +167,6 @@
             // 
             // textBoxZoek
             // 
-            this.textBoxZoek.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.textBoxZoek.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxZoek.Location = new System.Drawing.Point(12, 166);
             this.textBoxZoek.Name = "textBoxZoek";
@@ -176,7 +174,6 @@
             this.textBoxZoek.TabIndex = 15;
             this.textBoxZoek.Enter += new System.EventHandler(this.textBoxZoek_Enter);
             this.textBoxZoek.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxZoek_KeyUp);
-            this.textBoxZoek.Leave += new System.EventHandler(this.textBoxZoek_Leave);
             // 
             // label3
             // 

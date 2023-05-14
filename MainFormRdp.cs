@@ -27,9 +27,10 @@ namespace RDPKeuze
         // start button
         private void Button3_Click(object sender, EventArgs e)
         {
+            string gekozen_sectie = SectieLijst.Text;
+
             if (!LocatiePlaatst.Text.Contains("VNC"))
             {
-
                 // save naar ronald.rdp
                 File.WriteAllText("ronald.rdp", textBox.Text);
                 // run ...
@@ -48,6 +49,8 @@ namespace RDPKeuze
                 _ = process.Start();
             }
             UpdateUi();
+
+            SectieLijst.Text = gekozen_sectie;
         }
 
         private void EditLijst_Click(object sender, EventArgs e)
@@ -166,34 +169,54 @@ namespace RDPKeuze
         private void textBoxZoek_Enter(object sender, EventArgs e)
         {
             UpdateUi();
-            //if (textBoxZoek.Text.Length == 0)
-            //{
-            //    SectieLijst.SelectedIndex = -1;
-            //    computerlijst.SelectedIndex = -1;
-            //}
         }
 
         private void GaZoeken(object sender, EventArgs e)
         {
+            ZoekEnSelect zoekform = new ZoekEnSelect();
+            zoekform.listBoxGevonden.Items.Clear();
+
             foreach (server a in DataRdp.Server_lijst)
             {
-                //if (a._plaats == textBoxZoek.Text)
                 if (a._plaats.ToLower().Contains(textBoxZoek.Text.ToLower()))
                 {
-                    SectieLijst.Text = a._sectie;
+                    _ = zoekform.listBoxGevonden.Items.Add(a._plaats);
+                }
+            }
+            _ = zoekform.ShowDialog();
 
-                    Computerlijst_DropDown(this, null);
+            if (zoekform.listBoxGevonden.SelectedItem == null)
+            {
+                return;
+            }
 
-                    for (int i = 0; i < computerlijst.Items.Count; i++)
+            string geselecteerd = zoekform.listBoxGevonden.SelectedItem.ToString();
+            if (geselecteerd != "")
+            {
+                foreach (server a in DataRdp.Server_lijst)
+                {
+                    if (a._plaats == geselecteerd)
                     {
-
-                        if (computerlijst.Items[i].ToString() == a._plaats)
+                        for (int i = 0; i < SectieLijst.Items.Count; i++)
                         {
-                            computerlijst.SelectedIndex = i;
-                            break;
+                            if (SectieLijst.Items[i].ToString() == a._sectie)
+                            {
+                                SectieLijst.SelectedIndex = i;
+                                i = SectieLijst.Items.Count + 1;
+
+                                Computerlijst_DropDown(this, null);
+                            }
+                        }
+
+                        for (int i = 0; i < computerlijst.Items.Count; i++)
+                        {
+                            if (computerlijst.Items[i].ToString() == a._plaats)
+                            {
+                                computerlijst.SelectedIndex = i;
+                                i = computerlijst.Items.Count + 1;
+                            }
                         }
                     }
-                    break;
                 }
             }
         }
@@ -206,15 +229,15 @@ namespace RDPKeuze
             }
         }
 
-        private void textBoxZoek_Leave(object sender, EventArgs e)
-        {
-            if(textBoxZoek.Text.Length > 1)
-                GaZoeken(this, null);
-        }
+        //private void textBoxZoek_Leave(object sender, EventArgs e)
+        //{
+        //        //if (textBoxZoek.Text.Length > 1)
+        //            //GaZoeken(this, null);
+        //}
 
         private void FormRdpKeuze_Shown(object sender, EventArgs e)
         {
-            textBoxZoek.Focus();
+            _ = textBoxZoek.Focus();
         }
     }
 }
