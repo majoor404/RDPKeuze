@@ -10,7 +10,6 @@ namespace RDPKeuze
     public partial class FormRdpKeuze : Form
     {
         private string vnc_adres = "";
-
         public FormRdpKeuze()
         {
             InitializeComponent();
@@ -223,10 +222,10 @@ namespace RDPKeuze
 
         private void textBoxZoek_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                GaZoeken(this, null);
-            }
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    GaZoeken(this, null);
+            //}
         }
 
         //private void textBoxZoek_Leave(object sender, EventArgs e)
@@ -238,6 +237,14 @@ namespace RDPKeuze
         private void FormRdpKeuze_Shown(object sender, EventArgs e)
         {
             _ = textBoxZoek.Focus();
+        }
+
+        private void textBoxZoek_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                GaZoeken(this, null);
+            }
         }
     }
 }

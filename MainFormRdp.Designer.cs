@@ -42,7 +42,6 @@
             this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.textBoxZoek = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.ButGo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox
@@ -173,6 +172,7 @@
             this.textBoxZoek.Size = new System.Drawing.Size(376, 24);
             this.textBoxZoek.TabIndex = 15;
             this.textBoxZoek.Enter += new System.EventHandler(this.textBoxZoek_Enter);
+            this.textBoxZoek.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxZoek_KeyPress);
             this.textBoxZoek.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxZoek_KeyUp);
             // 
             // label3
@@ -185,18 +185,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Zoek";
             // 
-            // ButGo
-            // 
-            this.ButGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButGo.Location = new System.Drawing.Point(307, 136);
-            this.ButGo.Name = "ButGo";
-            this.ButGo.Size = new System.Drawing.Size(84, 26);
-            this.ButGo.TabIndex = 12;
-            this.ButGo.Text = "Go";
-            this.ButGo.UseVisualStyleBackColor = true;
-            this.ButGo.Visible = false;
-            this.ButGo.Click += new System.EventHandler(this.GaZoeken);
-            // 
             // FormRdpKeuze
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,7 +192,6 @@
             this.ClientSize = new System.Drawing.Size(403, 430);
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.linkLabelGitHub);
-            this.Controls.Add(this.ButGo);
             this.Controls.Add(this.buttonReload);
             this.Controls.Add(this.LocatiePlaatst);
             this.Controls.Add(this.computerlijst);
@@ -244,7 +231,6 @@
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.TextBox textBoxZoek;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button ButGo;
     }
 }
 
