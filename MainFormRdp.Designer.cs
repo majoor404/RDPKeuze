@@ -173,7 +173,6 @@
             this.textBoxZoek.TabIndex = 15;
             this.textBoxZoek.Enter += new System.EventHandler(this.textBoxZoek_Enter);
             this.textBoxZoek.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxZoek_KeyPress);
-            this.textBoxZoek.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxZoek_KeyUp);
             // 
             // label3
             // 

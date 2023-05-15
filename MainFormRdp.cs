@@ -220,20 +220,6 @@ namespace RDPKeuze
             }
         }
 
-        private void textBoxZoek_KeyUp(object sender, KeyEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    GaZoeken(this, null);
-            //}
-        }
-
-        //private void textBoxZoek_Leave(object sender, EventArgs e)
-        //{
-        //        //if (textBoxZoek.Text.Length > 1)
-        //            //GaZoeken(this, null);
-        //}
-
         private void FormRdpKeuze_Shown(object sender, EventArgs e)
         {
             _ = textBoxZoek.Focus();
