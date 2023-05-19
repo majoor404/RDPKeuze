@@ -221,6 +221,7 @@ namespace RDPKeuze
             else
             {
                 multischerm.Checked = false;
+                MessageBox.Show("Kies eerst een server waarmee u contact mee wilt maken.");
             }
         }
 
@@ -281,6 +282,12 @@ namespace RDPKeuze
                 // with a data format of "Text".
                 Clipboard.SetData(DataFormats.Text, a._usernaam);
             }
+        }
+
+        private void buttonhelpmulti_Click(object sender, EventArgs e)
+        {
+            helpmtsc helpmtsc = new helpmtsc();
+            helpmtsc.Show();
         }
     }
 }

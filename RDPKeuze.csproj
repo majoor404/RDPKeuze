@@ -59,6 +59,12 @@
     <Compile Include="EditForm.Designer.cs">
       <DependentUpon>EditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="helpmtsc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="helpmtsc.Designer.cs">
+      <DependentUpon>helpmtsc.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainFormRdp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <EmbeddedResource Include="EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="helpmtsc.resx">
+      <DependentUpon>helpmtsc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFormRdp.resx">
       <DependentUpon>MainFormRdp.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +97,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ZoekEnSelect.resx">
       <DependentUpon>ZoekEnSelect.cs</DependentUpon>
