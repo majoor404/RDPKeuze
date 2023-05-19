@@ -42,6 +42,8 @@
             this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.textBoxZoek = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.multischerm = new System.Windows.Forms.CheckBox();
+            this.vnclabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox
@@ -184,14 +186,40 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Zoek";
             // 
+            // multischerm
+            // 
+            this.multischerm.AutoSize = true;
+            this.multischerm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.multischerm.Location = new System.Drawing.Point(275, 294);
+            this.multischerm.Name = "multischerm";
+            this.multischerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.multischerm.Size = new System.Drawing.Size(113, 22);
+            this.multischerm.TabIndex = 16;
+            this.multischerm.Text = "Multi Monitor";
+            this.multischerm.UseVisualStyleBackColor = true;
+            this.multischerm.Click += new System.EventHandler(this.multischerm_Click);
+            // 
+            // vnclabel
+            // 
+            this.vnclabel.AutoSize = true;
+            this.vnclabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vnclabel.Location = new System.Drawing.Point(157, 106);
+            this.vnclabel.Name = "vnclabel";
+            this.vnclabel.Size = new System.Drawing.Size(237, 18);
+            this.vnclabel.TabIndex = 11;
+            this.vnclabel.Text = "Met VNC, passwoord op klembord";
+            this.vnclabel.Visible = false;
+            // 
             // FormRdpKeuze
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(403, 430);
+            this.Controls.Add(this.multischerm);
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.linkLabelGitHub);
             this.Controls.Add(this.buttonReload);
+            this.Controls.Add(this.vnclabel);
             this.Controls.Add(this.LocatiePlaatst);
             this.Controls.Add(this.computerlijst);
             this.Controls.Add(this.label3);
@@ -230,6 +258,8 @@
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.TextBox textBoxZoek;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox multischerm;
+        private System.Windows.Forms.Label vnclabel;
     }
 }
 

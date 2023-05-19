@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RDPKeuze
 {
@@ -63,6 +65,7 @@ namespace RDPKeuze
         {
             DataRdp.Lees_server_lijst();
             SectieLijst.Items.Clear();
+            vnclabel.Visible = false;
             AutoCompleteStringCollection data = new AutoCompleteStringCollection();
 
             foreach (server a in DataRdp.Server_lijst)
@@ -100,49 +103,14 @@ namespace RDPKeuze
         private void Computerlijst_SelectedIndexChanged(object sender, EventArgs e)
         {
             LocatiePlaatst.Text = "";
+            vnclabel.Visible = false;
+            multischerm.Checked = false;
 
             foreach (server a in DataRdp.Server_lijst)
             {
                 if (a._plaats == computerlijst.Text && a._sectie == SectieLijst.Text)
                 {
-                    if (a._domein != "VNC")
-                    {
-                        LocatiePlaatst.Text = a._adres;
-
-                        textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
-                        textBoxTemp.Text = textBox.Text;
-                        textBox.Clear();
-
-                        textBox.AppendText("full address:s:" + a._adres);
-                        textBox.AppendText(Environment.NewLine);
-
-                        textBox.AppendText("username:s:" + a._usernaam);
-                        textBox.AppendText(Environment.NewLine);
-
-                        textBox.AppendText("domain:s:" + a._domein);
-                        textBox.AppendText(Environment.NewLine);
-
-                        int aantal_regels = textBoxTemp.Lines.Count();
-                        for (int i = 0; i < aantal_regels - 3; i++)
-                        {
-                            textBox.AppendText(textBoxTemp.Lines[i + 3]);
-                            textBox.AppendText(Environment.NewLine);
-                        }
-                        textBox.SelectionStart = 1;
-                        textBox.ScrollToCaret();
-                        break;
-                    }
-                    else
-                    {
-                        // vnc
-                        LocatiePlaatst.Text = a._adres + " Met VNC, passwoord op klembord";
-                        vnc_adres = a._adres;
-
-                        // After this call, the data (string) is placed on the clipboard and tagged
-                        // with a data format of "Text".
-                        Clipboard.SetData(DataFormats.Text, a._usernaam);
-
-                    }
+                    SchrijfDataIntextBox(a);
                 }
             }
         }
@@ -153,6 +121,7 @@ namespace RDPKeuze
             computerlijst.SelectedIndex = -1;
             LocatiePlaatst.Text = "";
             textBoxZoek.Text = "";
+            vnclabel.Visible = false;
         }
 
         private void buttonReload_Click(object sender, EventArgs e)
@@ -217,6 +186,7 @@ namespace RDPKeuze
                         }
                     }
                 }
+                StartButton.Focus();
             }
         }
 
@@ -230,6 +200,86 @@ namespace RDPKeuze
             if (e.KeyChar == '\r')
             {
                 GaZoeken(this, null);
+            }
+        }
+
+        private void multischerm_Click(object sender, EventArgs e)
+        {
+            if (LocatiePlaatst.Text != "")
+            {
+                // zoek server
+                foreach (server a in DataRdp.Server_lijst)
+                {
+                    if (LocatiePlaatst.Text == a._adres)
+                    {
+                        a._multiscreen = multischerm.Checked;
+                        DataRdp.Schrijf_server_lijst();
+                        SchrijfDataIntextBox(a);
+                    }
+                }
+            }
+            else
+            {
+                multischerm.Checked = false;
+            }
+        }
+
+        private void SchrijfDataIntextBox(server a)
+        {
+            if (a._domein != "VNC")
+            {
+                LocatiePlaatst.Text = a._adres;
+
+                multischerm.Checked = a._multiscreen;
+
+                textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
+                textBoxTemp.Text = textBox.Text;
+                textBox.Clear();
+
+                textBox.AppendText("full address:s:" + a._adres);
+                textBox.AppendText(Environment.NewLine);
+
+                textBox.AppendText("username:s:" + a._usernaam);
+                textBox.AppendText(Environment.NewLine);
+
+                textBox.AppendText("domain:s:" + a._domein);
+                textBox.AppendText(Environment.NewLine);
+
+                int aantal_regels = textBoxTemp.Lines.Count();
+                for (int i = 0; i < aantal_regels - 3; i++)
+                {
+                    textBox.AppendText(textBoxTemp.Lines[i + 3]);
+                    textBox.AppendText(Environment.NewLine);
+                }
+
+                int pos = textBox.Text.IndexOf("use multimon:i:");
+                if (pos != -1)
+                {
+                    textBox.SelectionStart = pos + 15;
+                    textBox.SelectionLength = 1;
+
+                    if (a._multiscreen)
+                    {
+                        textBox.SelectedText = "1";
+                    }
+                    else
+                    {
+                        textBox.SelectedText = "0";
+                    }
+                }
+                textBox.SelectionStart = 1;
+                textBox.ScrollToCaret();
+            }
+            else
+            {
+                // vnc
+                LocatiePlaatst.Text = a._adres;// + " Met VNC, passwoord op klembord";
+                vnclabel.Visible = true;
+                vnc_adres = a._adres;
+
+                // After this call, the data (string) is placed on the clipboard and tagged
+                // with a data format of "Text".
+                Clipboard.SetData(DataFormats.Text, a._usernaam);
             }
         }
     }

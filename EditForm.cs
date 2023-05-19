@@ -56,7 +56,7 @@ namespace RDPKeuze
 
             ListView.SelectedItems.Clear();
 
-            server a = new server(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
+            server a = new server(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, false);
             DataRdp.Server_lijst.Add(a);
             DataRdp.Schrijf_server_lijst();
             EditForm_Shown(this, null);
@@ -144,7 +144,7 @@ namespace RDPKeuze
         {
             if (ListView.SelectedItems.Count > 0)
             {
-                server a = new server(textBox1.Text, "copy " + textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
+                server a = new server(textBox1.Text, "copy " + textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, false);
                 DataRdp.Server_lijst.Add(a);
                 EditForm_Shown(this, null);
             }
