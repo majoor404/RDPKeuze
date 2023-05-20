@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RDPKeuze
 {
@@ -186,7 +184,7 @@ namespace RDPKeuze
                         }
                     }
                 }
-                StartButton.Focus();
+                _ = StartButton.Focus();
             }
         }
 
@@ -221,7 +219,7 @@ namespace RDPKeuze
             else
             {
                 multischerm.Checked = false;
-                MessageBox.Show("Kies eerst een server waarmee u contact mee wilt maken.");
+                _ = MessageBox.Show("Kies eerst een server waarmee u contact mee wilt maken.");
             }
         }
 
@@ -259,14 +257,7 @@ namespace RDPKeuze
                     textBox.SelectionStart = pos + 15;
                     textBox.SelectionLength = 1;
 
-                    if (a._multiscreen)
-                    {
-                        textBox.SelectedText = "1";
-                    }
-                    else
-                    {
-                        textBox.SelectedText = "0";
-                    }
+                    textBox.SelectedText = a._multiscreen ? "1" : "0";
                 }
                 textBox.SelectionStart = 1;
                 textBox.ScrollToCaret();
@@ -282,12 +273,6 @@ namespace RDPKeuze
                 // with a data format of "Text".
                 Clipboard.SetData(DataFormats.Text, a._usernaam);
             }
-        }
-
-        private void buttonhelpmulti_Click(object sender, EventArgs e)
-        {
-            helpmtsc helpmtsc = new helpmtsc();
-            helpmtsc.Show();
         }
     }
 }

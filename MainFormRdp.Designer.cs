@@ -44,7 +44,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.multischerm = new System.Windows.Forms.CheckBox();
             this.vnclabel = new System.Windows.Forms.Label();
-            this.buttonhelpmulti = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox
@@ -191,12 +190,12 @@
             // 
             this.multischerm.AutoSize = true;
             this.multischerm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.multischerm.Location = new System.Drawing.Point(243, 296);
+            this.multischerm.Location = new System.Drawing.Point(32, 294);
             this.multischerm.Name = "multischerm";
             this.multischerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.multischerm.Size = new System.Drawing.Size(113, 22);
+            this.multischerm.Size = new System.Drawing.Size(356, 22);
             this.multischerm.TabIndex = 16;
-            this.multischerm.Text = "Multi Monitor";
+            this.multischerm.Text = "Alle beeldschermen voor externe sessie gebruiken";
             this.multischerm.UseVisualStyleBackColor = true;
             this.multischerm.Click += new System.EventHandler(this.multischerm_Click);
             // 
@@ -211,22 +210,11 @@
             this.vnclabel.Text = "Met VNC, passwoord op klembord";
             this.vnclabel.Visible = false;
             // 
-            // buttonhelpmulti
-            // 
-            this.buttonhelpmulti.Location = new System.Drawing.Point(365, 295);
-            this.buttonhelpmulti.Name = "buttonhelpmulti";
-            this.buttonhelpmulti.Size = new System.Drawing.Size(23, 23);
-            this.buttonhelpmulti.TabIndex = 17;
-            this.buttonhelpmulti.Text = "?";
-            this.buttonhelpmulti.UseVisualStyleBackColor = true;
-            this.buttonhelpmulti.Click += new System.EventHandler(this.buttonhelpmulti_Click);
-            // 
             // FormRdpKeuze
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(403, 430);
-            this.Controls.Add(this.buttonhelpmulti);
             this.Controls.Add(this.multischerm);
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.linkLabelGitHub);
@@ -272,7 +260,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox multischerm;
         private System.Windows.Forms.Label vnclabel;
-        private System.Windows.Forms.Button buttonhelpmulti;
     }
 }
 
