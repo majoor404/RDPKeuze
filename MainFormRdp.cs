@@ -68,7 +68,6 @@ namespace RDPKeuze
             DataRdp.Lees_server_lijst();
             SectieLijst.Items.Clear();
             vnclabel.Visible = false;
-            AutoCompleteStringCollection data = new AutoCompleteStringCollection();
 
             foreach (server a in DataRdp.Server_lijst)
             {
@@ -76,14 +75,11 @@ namespace RDPKeuze
                 {
                     _ = SectieLijst.Items.Add(a._sectie);
                 }
-                _ = data.Add(a._plaats);
             }
 
             computerlijst.Items.Clear();
             computerlijst.SelectedIndex = -1;
             LocatiePlaatst.Text = "";
-
-            textBoxZoek.AutoCompleteCustomSource = data;
         }
 
         private void Computerlijst_DropDown(object sender, EventArgs e)
