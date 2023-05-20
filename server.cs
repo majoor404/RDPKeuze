@@ -8,7 +8,7 @@ namespace RDPKeuze
 {
 	[Serializable()]
 
-	class server
+	public class server
     {
 		public string _sectie;
 		public string _plaats;
@@ -17,6 +17,7 @@ namespace RDPKeuze
 		public string _domein;
 		public bool _multiscreen;
 
+		public server() { }
 		public server(string s, string p, string a, string u, string d , bool m)
 		{
 			_sectie = s;

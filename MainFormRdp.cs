@@ -17,9 +17,13 @@ namespace RDPKeuze
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // laad ronald.rdp in textbox
+            //laad ronald.rdp in textbox
             //DataRdp.Lees_server_lijst(); zit in updateUI
             textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
+
+            if (File.Exists("Data.bin"))
+                DataRdp.ZetOmNaarXML();
+
             UpdateUi();
         }
 
