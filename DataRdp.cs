@@ -24,20 +24,6 @@ namespace RDPKeuze
 
         public static void Lees_server_lijst()
         {
-            //Server_lijst.Clear();
-            //try
-            //{
-            //    using (Stream stream = File.Open("data.bin", FileMode.Open))
-            //    {
-            //        BinaryFormatter bin = new BinaryFormatter();
-
-            //        Server_lijst = (List<server>)bin.Deserialize(stream);
-            //    }
-            //}
-            //catch (IOException)
-            //{
-            //}
-
             try
             {
                 string xmlTekst = File.ReadAllText("data.xml");
@@ -49,18 +35,6 @@ namespace RDPKeuze
 
         public static void Schrijf_server_lijst()
         {
-            //try
-            //{
-            //    using (Stream stream = File.Open("data.bin", FileMode.Create))
-            //    {
-            //        BinaryFormatter bin = new BinaryFormatter();
-            //        bin.Serialize(stream, Server_lijst);
-            //    }
-            //}
-            //catch (IOException)
-            //{
-            //}
-
             try
             {
                 string xmlTekst = ToXML(Server_lijst);
