@@ -231,8 +231,11 @@ namespace RDPKeuze
 
                 multischerm.Checked = a._multiscreen;
 
-                textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
-                textBoxTemp.Text = textBox.Text;
+                //textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
+                //textBoxTemp.Text = textBox.Text;
+                //textBox.Clear();
+
+                textBoxTemp.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
                 textBox.Clear();
 
                 textBox.AppendText("full address:s:" + a._adres);

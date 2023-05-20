@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace RDPKeuze
 {
-    class DataRdp
+    internal class DataRdp
     {
         // data welk in elk formulier bekend moet zijn
         //public static List<server> Server_lijst { get; set; }
@@ -26,8 +26,8 @@ namespace RDPKeuze
         {
             try
             {
-                string xmlTekst = File.ReadAllText("data.xml");
                 Server_lijst.Clear();
+                string xmlTekst = File.ReadAllText("data.xml");
                 Server_lijst = FromXML<List<server>>(xmlTekst);
             }
             catch { }
