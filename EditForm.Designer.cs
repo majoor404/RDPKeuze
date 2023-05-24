@@ -55,6 +55,7 @@
             this.ButtonImport = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxImport = new System.Windows.Forms.TextBox();
+            this.buttonNameServer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -161,7 +162,7 @@
             // buttonClose
             // 
             this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.Location = new System.Drawing.Point(663, 560);
+            this.buttonClose.Location = new System.Drawing.Point(663, 561);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(246, 30);
             this.buttonClose.TabIndex = 12;
@@ -172,7 +173,7 @@
             // VoegToeBut
             // 
             this.VoegToeBut.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VoegToeBut.Location = new System.Drawing.Point(663, 472);
+            this.VoegToeBut.Location = new System.Drawing.Point(663, 444);
             this.VoegToeBut.Name = "VoegToeBut";
             this.VoegToeBut.Size = new System.Drawing.Size(120, 30);
             this.VoegToeBut.TabIndex = 13;
@@ -183,7 +184,7 @@
             // buttonDel
             // 
             this.buttonDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDel.Location = new System.Drawing.Point(789, 472);
+            this.buttonDel.Location = new System.Drawing.Point(789, 444);
             this.buttonDel.Name = "buttonDel";
             this.buttonDel.Size = new System.Drawing.Size(120, 30);
             this.buttonDel.TabIndex = 16;
@@ -258,7 +259,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(663, 516);
+            this.button1.Location = new System.Drawing.Point(663, 483);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(244, 30);
             this.button1.TabIndex = 20;
@@ -304,6 +305,17 @@
             this.textBoxImport.TabIndex = 23;
             this.textBoxImport.Visible = false;
             // 
+            // buttonNameServer
+            // 
+            this.buttonNameServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNameServer.Location = new System.Drawing.Point(663, 522);
+            this.buttonNameServer.Name = "buttonNameServer";
+            this.buttonNameServer.Size = new System.Drawing.Size(246, 30);
+            this.buttonNameServer.TabIndex = 12;
+            this.buttonNameServer.Text = "Zoek juiste name server";
+            this.buttonNameServer.UseVisualStyleBackColor = true;
+            this.buttonNameServer.Click += new System.EventHandler(this.buttonNameServer_Click);
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,6 +330,7 @@
             this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.VoegToeBut);
+            this.Controls.Add(this.buttonNameServer);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.label5);
@@ -367,5 +380,6 @@
         private System.Windows.Forms.Button ButtonImport;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.TextBox textBoxImport;
+        private System.Windows.Forms.Button buttonNameServer;
     }
 }

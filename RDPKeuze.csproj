@@ -107,6 +107,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="nameserver.txt" />
     <Content Include="perspective.ico" />
     <Content Include="voorbeeld.txt" />
   </ItemGroup>
