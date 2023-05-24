@@ -32,7 +32,7 @@ namespace RDPKeuze
         {
             string gekozen_sectie = SectieLijst.Text;
 
-            if (!LocatiePlaatst.Text.Contains("VNC"))
+            if (!vnclabel.Visible/*!LocatiePlaatst.Text.Contains("VNC")*/)
             {
                 // save naar ronald.rdp
                 File.WriteAllText("ronald.rdp", textBox.Text);
