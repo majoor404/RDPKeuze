@@ -21,6 +21,7 @@ namespace RDPKeuze
         private void WachtWoordForm_Shown(object sender, System.EventArgs e)
         {
             LaadZienOpScherm();
+
         }
 
         private void LaadZienOpScherm()
@@ -138,19 +139,30 @@ namespace RDPKeuze
         {
             if (ListView.SelectedItems.Count > 0)
             {
-                int index = ListView.Items.IndexOf(ListView.SelectedItems[0]);
+                string naam = ListView.SelectedItems[0].SubItems[0].Text;
+                string user = ListView.SelectedItems[0].SubItems[1].Text;
+                string pass = ListView.SelectedItems[0].SubItems[2].Text;
+
                 WachtWoordEdit ed = new WachtWoordEdit();
-                ed.textBox1.Text = wachtwoord_lijst[index]._naam;
-                ed.textBox2.Text = wachtwoord_lijst[index]._user;
-                ed.textBox3.Text = wachtwoord_lijst[index]._ww;
+                ed.textBox1.Text = naam;
+                ed.textBox2.Text = user;
+                ed.textBox3.Text = pass;
                 DialogResult a =  ed.ShowDialog();
                 if(a == DialogResult.OK)
                 {
-                    wachtwoord_lijst[index]._naam = ed.textBox1.Text;
-                    wachtwoord_lijst[index]._user = ed.textBox2.Text;
-                    wachtwoord_lijst[index]._ww = ed.textBox3.Text;
-                    Save();
-                    LaadZienOpScherm();
+                    foreach (wachtwoord ww in wachtwoord_lijst)
+                    {
+                        if(ww._naam == naam && ww._user == user && ww._ww == pass)
+                        {
+                            ww._naam = ed.textBox1.Text;
+                            ww._user = ed.textBox2.Text;
+                            ww._ww = ed.textBox3.Text;
+                            Save();
+                            LaadZienOpScherm();
+                            break;
+                        }
+                    }
+                    
                 }
             }
         }

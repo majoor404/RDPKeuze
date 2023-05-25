@@ -16,5 +16,10 @@ namespace RDPKeuze
         {
             InitializeComponent();
         }
+
+        private void WachtWoordEdit_Shown(object sender, EventArgs e)
+        {
+            buttonCancel.Focus();
+        }
     }
 }

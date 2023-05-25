@@ -142,6 +142,7 @@
             this.Name = "WachtWoordEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "WachtWoord Edit";
+            this.Shown += new System.EventHandler(this.WachtWoordEdit_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
