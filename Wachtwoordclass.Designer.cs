@@ -1,6 +1,6 @@
 ﻿namespace RDPKeuze
 {
-    partial class Ww
+    partial class WachtWoordForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBoxZoek = new System.Windows.Forms.TextBox();
+            this.buttonZoek = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -57,11 +59,13 @@
             this.ListView.GridLines = true;
             this.ListView.HideSelection = false;
             this.ListView.Location = new System.Drawing.Point(12, 12);
+            this.ListView.MultiSelect = false;
             this.ListView.Name = "ListView";
             this.ListView.Size = new System.Drawing.Size(876, 463);
             this.ListView.TabIndex = 16;
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
+            this.ListView.DoubleClick += new System.EventHandler(this.ListView_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -78,18 +82,40 @@
             this.columnHeader3.Text = "Passwoord";
             this.columnHeader3.Width = 280;
             // 
-            // Ww
+            // textBoxZoek
+            // 
+            this.textBoxZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxZoek.Location = new System.Drawing.Point(12, 490);
+            this.textBoxZoek.Name = "textBoxZoek";
+            this.textBoxZoek.Size = new System.Drawing.Size(271, 24);
+            this.textBoxZoek.TabIndex = 18;
+            // 
+            // buttonZoek
+            // 
+            this.buttonZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonZoek.Location = new System.Drawing.Point(299, 481);
+            this.buttonZoek.Name = "buttonZoek";
+            this.buttonZoek.Size = new System.Drawing.Size(189, 43);
+            this.buttonZoek.TabIndex = 0;
+            this.buttonZoek.Text = "Filter / Zoek";
+            this.buttonZoek.UseVisualStyleBackColor = true;
+            this.buttonZoek.Click += new System.EventHandler(this.buttonZoek_Click);
+            // 
+            // WachtWoordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 536);
+            this.ClientSize = new System.Drawing.Size(899, 534);
+            this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.ListView);
+            this.Controls.Add(this.buttonZoek);
             this.Controls.Add(this.buttonClose);
-            this.Name = "Ww";
+            this.Name = "WachtWoordForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Wacht Woorden";
-            this.Shown += new System.EventHandler(this.ww_Shown);
+            this.Shown += new System.EventHandler(this.WachtWoordForm_Shown);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -100,5 +126,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.TextBox textBoxZoek;
+        private System.Windows.Forms.Button buttonZoek;
     }
 }

@@ -286,7 +286,7 @@ namespace RDPKeuze
                 if(testDialog.textBox1.Text == "ox2tessa")
                 {
                     testDialog.Dispose();
-                    Ww wacht = new Ww();
+                    WachtWoordForm wacht = new WachtWoordForm();
                     wacht.ShowDialog(this);
                 }
 

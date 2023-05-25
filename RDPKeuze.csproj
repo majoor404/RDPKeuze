@@ -75,11 +75,17 @@
       <DependentUpon>tsbww.cs</DependentUpon>
     </Compile>
     <Compile Include="wachtwoord.cs" />
-    <Compile Include="ww.cs">
+    <Compile Include="Wachtwoordclass.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ww.Designer.cs">
-      <DependentUpon>ww.cs</DependentUpon>
+    <Compile Include="Wachtwoordclass.Designer.cs">
+      <DependentUpon>Wachtwoordclass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WachtWoordEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WachtWoordEdit.Designer.cs">
+      <DependentUpon>WachtWoordEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="ZoekEnSelect.cs">
       <SubType>Form</SubType>
@@ -106,8 +112,11 @@
     <EmbeddedResource Include="tsbww.resx">
       <DependentUpon>tsbww.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ww.resx">
-      <DependentUpon>ww.cs</DependentUpon>
+    <EmbeddedResource Include="Wachtwoordclass.resx">
+      <DependentUpon>Wachtwoordclass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WachtWoordEdit.resx">
+      <DependentUpon>WachtWoordEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ZoekEnSelect.resx">
       <DependentUpon>ZoekEnSelect.cs</DependentUpon>

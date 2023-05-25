@@ -38,7 +38,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.computerlijst = new System.Windows.Forms.ComboBox();
             this.LocatiePlaatst = new System.Windows.Forms.Label();
-            this.buttonReload = new System.Windows.Forms.Button();
             this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.textBoxZoek = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -144,18 +143,6 @@
             this.LocatiePlaatst.TabIndex = 11;
             this.LocatiePlaatst.Text = "plaats holder locatie";
             // 
-            // buttonReload
-            // 
-            this.buttonReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReload.Location = new System.Drawing.Point(12, 309);
-            this.buttonReload.Name = "buttonReload";
-            this.buttonReload.Size = new System.Drawing.Size(376, 31);
-            this.buttonReload.TabIndex = 12;
-            this.buttonReload.Text = "Reload";
-            this.buttonReload.UseVisualStyleBackColor = true;
-            this.buttonReload.Visible = false;
-            this.buttonReload.Click += new System.EventHandler(this.buttonReload_Click);
-            // 
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
@@ -230,7 +217,6 @@
             this.Controls.Add(this.multischerm);
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.linkLabelGitHub);
-            this.Controls.Add(this.buttonReload);
             this.Controls.Add(this.vnclabel);
             this.Controls.Add(this.LocatiePlaatst);
             this.Controls.Add(this.computerlijst);
@@ -266,7 +252,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox computerlijst;
         private System.Windows.Forms.Label LocatiePlaatst;
-        private System.Windows.Forms.Button buttonReload;
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.TextBox textBoxZoek;
         private System.Windows.Forms.Label label3;

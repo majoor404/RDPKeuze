@@ -1,27 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RDPKeuze
 {
-    public partial class Ww : Form
+    public partial class WachtWoordForm : Form
     {
         public static List<wachtwoord> wachtwoord_lijst = new List<wachtwoord>();
 
-        public Ww()
+        public WachtWoordForm()
         {
             InitializeComponent();
         }
 
-        private void ww_Shown(object sender, System.EventArgs e)
+        private void WachtWoordForm_Shown(object sender, System.EventArgs e)
         {
-            // laad
+            LaadZienOpScherm();
+        }
+
+        private void LaadZienOpScherm()
+        {
             Laad();
-
-
             ListView.Items.Clear();
             string[] arr = new string[3];
             ListViewItem itm;
@@ -30,14 +34,10 @@ namespace RDPKeuze
                 arr[0] = a._naam;
                 arr[1] = a._user;
                 arr[2] = a._ww;
-                
+
                 itm = new ListViewItem(arr);
                 _ = ListView.Items.Add(itm);
             }
-
-
-            // save
-            //Save();
         }
 
         private void Laad()
@@ -132,6 +132,50 @@ namespace RDPKeuze
                 ret += character.ToString();
             }
             return ret;
+        }
+
+        private void ListView_DoubleClick(object sender, System.EventArgs e)
+        {
+            if (ListView.SelectedItems.Count > 0)
+            {
+                int index = ListView.Items.IndexOf(ListView.SelectedItems[0]);
+                WachtWoordEdit ed = new WachtWoordEdit();
+                ed.textBox1.Text = wachtwoord_lijst[index]._naam;
+                ed.textBox2.Text = wachtwoord_lijst[index]._user;
+                ed.textBox3.Text = wachtwoord_lijst[index]._ww;
+                DialogResult a =  ed.ShowDialog();
+                if(a == DialogResult.OK)
+                {
+                    wachtwoord_lijst[index]._naam = ed.textBox1.Text;
+                    wachtwoord_lijst[index]._user = ed.textBox2.Text;
+                    wachtwoord_lijst[index]._ww = ed.textBox3.Text;
+                    Save();
+                    LaadZienOpScherm();
+                }
+            }
+        }
+
+        private void buttonZoek_Click(object sender, System.EventArgs e)
+        {
+            if(textBoxZoek.Text.Length > 0)
+            {
+                Laad();
+                ListView.Items.Clear();
+                string[] arr = new string[3];
+                ListViewItem itm;
+                foreach (wachtwoord a in wachtwoord_lijst)
+                {
+                    if (a._naam.ToLower().Contains(textBoxZoek.Text.ToLower()))
+                    {
+                        arr[0] = a._naam;
+                        arr[1] = a._user;
+                        arr[2] = a._ww;
+
+                        itm = new ListViewItem(arr);
+                        _ = ListView.Items.Add(itm);
+                    }
+                }
+            }
         }
     }
 }
