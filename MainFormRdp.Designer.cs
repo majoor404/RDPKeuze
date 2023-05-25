@@ -44,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.multischerm = new System.Windows.Forms.CheckBox();
             this.vnclabel = new System.Windows.Forms.Label();
+            this.buttonWW = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox
@@ -158,7 +159,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(94, 408);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(12, 408);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(207, 13);
             this.linkLabelGitHub.TabIndex = 14;
@@ -210,11 +211,22 @@
             this.vnclabel.Text = "Met VNC, passwoord op klembord";
             this.vnclabel.Visible = false;
             // 
+            // buttonWW
+            // 
+            this.buttonWW.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonWW.Location = new System.Drawing.Point(316, 400);
+            this.buttonWW.Name = "buttonWW";
+            this.buttonWW.Size = new System.Drawing.Size(74, 26);
+            this.buttonWW.TabIndex = 7;
+            this.buttonWW.Text = "Ww";
+            this.buttonWW.UseVisualStyleBackColor = true;
+            this.buttonWW.Click += new System.EventHandler(this.buttonWW_Click);
+            // 
             // FormRdpKeuze
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 430);
+            this.ClientSize = new System.Drawing.Size(403, 435);
             this.Controls.Add(this.multischerm);
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.linkLabelGitHub);
@@ -224,6 +236,7 @@
             this.Controls.Add(this.computerlijst);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.buttonWW);
             this.Controls.Add(this.EditLijst);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SectieLijst);
@@ -259,6 +272,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox multischerm;
         private System.Windows.Forms.Label vnclabel;
+        private System.Windows.Forms.Button buttonWW;
     }
 }
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -61,32 +60,5 @@ namespace RDPKeuze
                 return (T)serializer.Deserialize(stringReader);
             }
         }
-
-        //public static void ZetOmNaarXML()
-        //{
-        //    Server_lijst.Clear();
-        //    try
-        //    {
-        //        using (Stream stream = File.Open("data.bin", FileMode.Open))
-        //        {
-        //            BinaryFormatter bin = new BinaryFormatter();
-
-        //            Server_lijst = (List<server>)bin.Deserialize(stream);
-        //        }
-
-        //        try
-        //        {
-        //            string xmlTekst = ToXML(Server_lijst);
-        //            File.WriteAllText("data.xml", xmlTekst);
-        //            // delete data.bin
-        //            string newFilePath = "data.bin.old";
-        //            File.Move("data.bin", newFilePath);
-        //        }
-        //        catch { }
-        //    }
-        //    catch (IOException)
-        //    {
-        //    }
-        //}
     }
 }

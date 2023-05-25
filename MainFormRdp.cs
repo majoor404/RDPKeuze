@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -20,9 +21,6 @@ namespace RDPKeuze
             //laad ronald.rdp in textbox
             //DataRdp.Lees_server_lijst(); zit in updateUI
             textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
-
-            //if (File.Exists("Data.bin"))
-            //    DataRdp.ZetOmNaarXML();
 
             UpdateUi();
         }
@@ -276,6 +274,24 @@ namespace RDPKeuze
                 // with a data format of "Text".
                 Clipboard.SetData(DataFormats.Text, a._usernaam);
             }
+        }
+
+        private void buttonWW_Click(object sender, EventArgs e)
+        {
+            tsbww testDialog = new tsbww();
+
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            if (testDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                if(testDialog.textBox1.Text == "ox2tessa")
+                {
+                    testDialog.Dispose();
+                    Ww wacht = new Ww();
+                    wacht.ShowDialog(this);
+                }
+
+            }
+            testDialog.Dispose();
         }
     }
 }

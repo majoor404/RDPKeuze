@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace RDPKeuze
 {
-	[Serializable()]
-
 	public class server
     {
 		public string _sectie;
