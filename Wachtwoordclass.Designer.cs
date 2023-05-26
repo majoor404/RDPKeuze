@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonClose = new System.Windows.Forms.Button();
             this.ListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -35,6 +36,11 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBoxZoek = new System.Windows.Forms.TextBox();
             this.buttonZoek = new System.Windows.Forms.Button();
+            this.PupupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nieuwToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verwijderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PupupMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -65,7 +71,6 @@
             this.ListView.TabIndex = 16;
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
-            this.ListView.DoubleClick += new System.EventHandler(this.ListView_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -101,11 +106,42 @@
             this.buttonZoek.UseVisualStyleBackColor = true;
             this.buttonZoek.Click += new System.EventHandler(this.buttonZoek_Click);
             // 
+            // PupupMenu
+            // 
+            this.PupupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.nieuwToolStripMenuItem,
+            this.verwijderToolStripMenuItem});
+            this.PupupMenu.Name = "contextMenuStrip1";
+            this.PupupMenu.Size = new System.Drawing.Size(181, 92);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click_1);
+            // 
+            // nieuwToolStripMenuItem
+            // 
+            this.nieuwToolStripMenuItem.Name = "nieuwToolStripMenuItem";
+            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nieuwToolStripMenuItem.Text = "Nieuw";
+            this.nieuwToolStripMenuItem.Click += new System.EventHandler(this.nieuwToolStripMenuItem_Click);
+            // 
+            // verwijderToolStripMenuItem
+            // 
+            this.verwijderToolStripMenuItem.Name = "verwijderToolStripMenuItem";
+            this.verwijderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verwijderToolStripMenuItem.Text = "Verwijder";
+            this.verwijderToolStripMenuItem.Click += new System.EventHandler(this.verwijderToolStripMenuItem_Click);
+            // 
             // WachtWoordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 534);
+            this.ContextMenuStrip = this.PupupMenu;
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.buttonZoek);
@@ -114,6 +150,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Wacht Woorden";
             this.Shown += new System.EventHandler(this.WachtWoordForm_Shown);
+            this.PupupMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +165,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.TextBox textBoxZoek;
         private System.Windows.Forms.Button buttonZoek;
+        private System.Windows.Forms.ContextMenuStrip PupupMenu;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nieuwToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verwijderToolStripMenuItem;
     }
 }

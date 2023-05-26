@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace RDPKeuze
 {
@@ -21,7 +20,6 @@ namespace RDPKeuze
         private void WachtWoordForm_Shown(object sender, System.EventArgs e)
         {
             LaadZienOpScherm();
-
         }
 
         private void LaadZienOpScherm()
@@ -135,41 +133,9 @@ namespace RDPKeuze
             return ret;
         }
 
-        private void ListView_DoubleClick(object sender, System.EventArgs e)
-        {
-            if (ListView.SelectedItems.Count > 0)
-            {
-                string naam = ListView.SelectedItems[0].SubItems[0].Text;
-                string user = ListView.SelectedItems[0].SubItems[1].Text;
-                string pass = ListView.SelectedItems[0].SubItems[2].Text;
-
-                WachtWoordEdit ed = new WachtWoordEdit();
-                ed.textBox1.Text = naam;
-                ed.textBox2.Text = user;
-                ed.textBox3.Text = pass;
-                DialogResult a =  ed.ShowDialog();
-                if(a == DialogResult.OK)
-                {
-                    foreach (wachtwoord ww in wachtwoord_lijst)
-                    {
-                        if(ww._naam == naam && ww._user == user && ww._ww == pass)
-                        {
-                            ww._naam = ed.textBox1.Text;
-                            ww._user = ed.textBox2.Text;
-                            ww._ww = ed.textBox3.Text;
-                            Save();
-                            LaadZienOpScherm();
-                            break;
-                        }
-                    }
-                    
-                }
-            }
-        }
-
         private void buttonZoek_Click(object sender, System.EventArgs e)
         {
-            if(textBoxZoek.Text.Length > 0)
+            if (textBoxZoek.Text.Length > 0)
             {
                 Laad();
                 ListView.Items.Clear();
@@ -186,6 +152,77 @@ namespace RDPKeuze
                         itm = new ListViewItem(arr);
                         _ = ListView.Items.Add(itm);
                     }
+                }
+            }
+        }
+
+        private void editToolStripMenuItem_Click_1(object sender, System.EventArgs e)
+        {
+            if (ListView.SelectedItems.Count > 0)
+            {
+                string naam = ListView.SelectedItems[0].SubItems[0].Text;
+                string user = ListView.SelectedItems[0].SubItems[1].Text;
+                string pass = ListView.SelectedItems[0].SubItems[2].Text;
+
+                WachtWoordEdit ed = new WachtWoordEdit();
+                ed.textBox1.Text = naam;
+                ed.textBox2.Text = user;
+                ed.textBox3.Text = pass;
+                DialogResult a = ed.ShowDialog();
+                if (a == DialogResult.OK)
+                {
+                    foreach (wachtwoord ww in wachtwoord_lijst)
+                    {
+                        if (ww._naam == naam && ww._user == user && ww._ww == pass)
+                        {
+                            ww._naam = ed.textBox1.Text;
+                            ww._user = ed.textBox2.Text;
+                            ww._ww = ed.textBox3.Text;
+                            Save();
+                            LaadZienOpScherm();
+                            break;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void nieuwToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            WachtWoordEdit ed = new WachtWoordEdit();
+            ed.textBox1.Text = "";
+            ed.textBox2.Text = "";
+            ed.textBox3.Text = "";
+            DialogResult a = ed.ShowDialog();
+            if (a == DialogResult.OK)
+            {
+                wachtwoord ww = new wachtwoord
+                {
+                    _naam = ed.textBox1.Text,
+                    _user = ed.textBox2.Text,
+                    _ww = ed.textBox3.Text
+                };
+                wachtwoord_lijst.Add(ww);
+                Save();
+                LaadZienOpScherm();
+            }
+        }
+
+        private void verwijderToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            string naam = ListView.SelectedItems[0].SubItems[0].Text;
+            string user = ListView.SelectedItems[0].SubItems[1].Text;
+            string pass = ListView.SelectedItems[0].SubItems[2].Text;
+
+            for (int i = wachtwoord_lijst.Count - 1; i >= 0; i--)
+            {
+                if (wachtwoord_lijst[i]._naam == naam && wachtwoord_lijst[i]._user == user && wachtwoord_lijst[i]._ww == pass)
+                {
+                    wachtwoord_lijst.RemoveAt(i);
+                    Save();
+                    LaadZienOpScherm();
+                    break;
                 }
             }
         }

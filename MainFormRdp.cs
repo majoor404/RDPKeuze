@@ -278,12 +278,16 @@ namespace RDPKeuze
 
         private void buttonWW_Click(object sender, EventArgs e)
         {
+#if DEBUG
+            WachtWoordForm wacht = new WachtWoordForm();
+            wacht.ShowDialog(this);
+#else
             tsbww testDialog = new tsbww();
 
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
             if (testDialog.ShowDialog(this) == DialogResult.OK)
             {
-                if(testDialog.textBox1.Text == "ox2tessa")
+                if (testDialog.textBox1.Text == "ox2tessa")
                 {
                     testDialog.Dispose();
                     WachtWoordForm wacht = new WachtWoordForm();
@@ -292,6 +296,8 @@ namespace RDPKeuze
 
             }
             testDialog.Dispose();
+    
+#endif
         }
     }
 }
