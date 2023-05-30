@@ -93,8 +93,8 @@ namespace RDPKeuze
                 return;
             }
             // test of het al bestaat in lijst
-            if (!TestDubbel(textBox3.Text, textBox2.Text))
-            {
+            //if (!TestDubbel(textBox3.Text, textBox2.Text))
+            //{
                 if (ListView.SelectedItems.Count > 0)
                 {
                     DataRdp.Server_lijst[index]._adres = textBox3.Text;
@@ -105,14 +105,11 @@ namespace RDPKeuze
                     DataRdp.Schrijf_server_lijst();
                     EditForm_Shown(this, null);
                 }
-            }
-            else
-            {
-                _ = MessageBox.Show("Naam en Adres bestaan al in lijst");
-            }
-
-
-
+            //}
+            //else
+            //{
+            //    _ = MessageBox.Show("Naam en Adres bestaan al in lijst");
+            //}
         }
 
         private void buttonDel_Click(object sender, EventArgs e)

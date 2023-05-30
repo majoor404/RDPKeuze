@@ -53,6 +53,7 @@
             this.Name = "ZoekEnSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Zoek En Select";
+            this.Shown += new System.EventHandler(this.ZoekEnSelect_Shown);
             this.ResumeLayout(false);
 
         }

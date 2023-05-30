@@ -59,6 +59,8 @@ namespace RDPKeuze
             DataRdp.Lees_server_lijst();
             EditForm Edit = new EditForm();
             _ = Edit.ShowDialog();
+
+            UpdateUi();
         }
 
         public void UpdateUi()

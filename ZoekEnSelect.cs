@@ -27,5 +27,11 @@ namespace RDPKeuze
             if(e.KeyChar == (char)Keys.Return)
                 Close();
         }
+
+        private void ZoekEnSelect_Shown(object sender, EventArgs e)
+        {
+            if(listBoxGevonden.Items.Count > 0)
+                listBoxGevonden.SelectedIndex = 0;
+        }
     }
 }
