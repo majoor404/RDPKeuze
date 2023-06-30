@@ -40,6 +40,7 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nieuwToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verwijderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.PupupMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +91,7 @@
             // textBoxZoek
             // 
             this.textBoxZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxZoek.Location = new System.Drawing.Point(12, 490);
+            this.textBoxZoek.Location = new System.Drawing.Point(207, 490);
             this.textBoxZoek.Name = "textBoxZoek";
             this.textBoxZoek.Size = new System.Drawing.Size(271, 24);
             this.textBoxZoek.TabIndex = 18;
@@ -98,7 +99,7 @@
             // buttonZoek
             // 
             this.buttonZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonZoek.Location = new System.Drawing.Point(299, 481);
+            this.buttonZoek.Location = new System.Drawing.Point(494, 481);
             this.buttonZoek.Name = "buttonZoek";
             this.buttonZoek.Size = new System.Drawing.Size(189, 43);
             this.buttonZoek.TabIndex = 0;
@@ -113,28 +114,37 @@
             this.nieuwToolStripMenuItem,
             this.verwijderToolStripMenuItem});
             this.PupupMenu.Name = "contextMenuStrip1";
-            this.PupupMenu.Size = new System.Drawing.Size(181, 92);
+            this.PupupMenu.Size = new System.Drawing.Size(123, 70);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click_1);
             // 
             // nieuwToolStripMenuItem
             // 
             this.nieuwToolStripMenuItem.Name = "nieuwToolStripMenuItem";
-            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.nieuwToolStripMenuItem.Text = "Nieuw";
             this.nieuwToolStripMenuItem.Click += new System.EventHandler(this.nieuwToolStripMenuItem_Click);
             // 
             // verwijderToolStripMenuItem
             // 
             this.verwijderToolStripMenuItem.Name = "verwijderToolStripMenuItem";
-            this.verwijderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verwijderToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.verwijderToolStripMenuItem.Text = "Verwijder";
             this.verwijderToolStripMenuItem.Click += new System.EventHandler(this.verwijderToolStripMenuItem_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 497);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Rechter Muis Voor Edit";
             // 
             // WachtWoordForm
             // 
@@ -142,6 +152,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 534);
             this.ContextMenuStrip = this.PupupMenu;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.buttonZoek);
@@ -169,5 +180,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nieuwToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verwijderToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
     }
 }
