@@ -41,6 +41,8 @@
             this.nieuwToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verwijderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.sorteerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PupupMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,9 +114,10 @@
             this.PupupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editToolStripMenuItem,
             this.nieuwToolStripMenuItem,
-            this.verwijderToolStripMenuItem});
+            this.verwijderToolStripMenuItem,
+            this.sorteerToolStripMenuItem});
             this.PupupMenu.Name = "contextMenuStrip1";
-            this.PupupMenu.Size = new System.Drawing.Size(123, 70);
+            this.PupupMenu.Size = new System.Drawing.Size(181, 114);
             // 
             // editToolStripMenuItem
             // 
@@ -140,11 +143,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 497);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 484);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 13);
+            this.label1.Size = new System.Drawing.Size(161, 18);
             this.label1.TabIndex = 19;
             this.label1.Text = "Rechter Muis Voor Edit";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 506);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 18);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "En toevoegen";
+            // 
+            // sorteerToolStripMenuItem
+            // 
+            this.sorteerToolStripMenuItem.Name = "sorteerToolStripMenuItem";
+            this.sorteerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sorteerToolStripMenuItem.Text = "Sorteer";
+            this.sorteerToolStripMenuItem.Click += new System.EventHandler(this.sorteerToolStripMenuItem_Click);
             // 
             // WachtWoordForm
             // 
@@ -152,6 +173,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 534);
             this.ContextMenuStrip = this.PupupMenu;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.ListView);
@@ -181,5 +203,7 @@
         private System.Windows.Forms.ToolStripMenuItem nieuwToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verwijderToolStripMenuItem;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem sorteerToolStripMenuItem;
     }
 }

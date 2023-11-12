@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -178,8 +179,9 @@ namespace RDPKeuze
                             ww._naam = ed.textBox1.Text;
                             ww._user = ed.textBox2.Text;
                             ww._ww = ed.textBox3.Text;
-                            Save();
-                            LaadZienOpScherm();
+                            sorteerToolStripMenuItem_Click(this, null);
+                            //Save();
+                            //LaadZienOpScherm();
                             break;
                         }
                     }
@@ -204,8 +206,7 @@ namespace RDPKeuze
                     _ww = ed.textBox3.Text
                 };
                 wachtwoord_lijst.Add(ww);
-                Save();
-                LaadZienOpScherm();
+                sorteerToolStripMenuItem_Click(this, null);
             }
         }
 
@@ -225,6 +226,14 @@ namespace RDPKeuze
                     break;
                 }
             }
+        }
+
+        private void sorteerToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            List<wachtwoord> SortedList = wachtwoord_lijst.OrderBy(o => o._naam).ToList();
+            wachtwoord_lijst = SortedList;
+            Save();
+            LaadZienOpScherm();
         }
     }
 }
