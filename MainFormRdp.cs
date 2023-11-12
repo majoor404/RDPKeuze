@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -21,7 +20,6 @@ namespace RDPKeuze
             //laad ronald.rdp in textbox
             //DataRdp.Lees_server_lijst(); zit in updateUI
             textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
-
             UpdateUi();
         }
 
@@ -30,7 +28,7 @@ namespace RDPKeuze
         {
             string gekozen_sectie = SectieLijst.Text;
 
-            if (!vnclabel.Visible/*!LocatiePlaatst.Text.Contains("VNC")*/)
+            if (!vnclabel.Visible)
             {
                 // save naar ronald.rdp
                 File.WriteAllText("ronald.rdp", textBox.Text);
@@ -298,7 +296,7 @@ namespace RDPKeuze
 
             }
             testDialog.Dispose();
-    
+
 #endif
         }
     }

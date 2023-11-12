@@ -59,6 +59,12 @@
     <Compile Include="EditForm.Designer.cs">
       <DependentUpon>EditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForm2.Designer.cs">
+      <DependentUpon>EditForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainFormRdp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </Compile>
     <EmbeddedResource Include="EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditForm2.resx">
+      <DependentUpon>EditForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFormRdp.resx">
       <DependentUpon>MainFormRdp.cs</DependentUpon>
