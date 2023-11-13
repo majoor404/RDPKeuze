@@ -229,10 +229,6 @@ namespace RDPKeuze
 
                 multischerm.Checked = a._multiscreen;
 
-                //textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
-                //textBoxTemp.Text = textBox.Text;
-                //textBox.Clear();
-
                 textBoxTemp.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
                 textBox.Clear();
 
@@ -242,7 +238,7 @@ namespace RDPKeuze
                 textBox.AppendText("username:s:" + a._usernaam);
                 textBox.AppendText(Environment.NewLine);
 
-                textBox.AppendText("domain:s:" + a._domein);
+                textBox.AppendText("domain:s:");            // niet meer in gebruik.
                 textBox.AppendText(Environment.NewLine);
 
                 int aantal_regels = textBoxTemp.Lines.Count();

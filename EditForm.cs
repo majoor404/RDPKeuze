@@ -88,7 +88,17 @@ namespace RDPKeuze
                 ef.textBox3.Text = DataRdp.Server_lijst[index]._adres;
                 ef.textBox2.Text = DataRdp.Server_lijst[index]._plaats;
                 ef.textBox1.Text = DataRdp.Server_lijst[index]._sectie;
-                ef.textBox4.Text = DataRdp.Server_lijst[index]._usernaam;
+                
+                int a = DataRdp.Server_lijst[index]._usernaam.IndexOf("\\");
+                if(a > -1)
+                {
+                    ef.comboBoxDomein.Text = DataRdp.Server_lijst[index]._usernaam.Substring(0, a);
+                    ef.textBox4.Text = DataRdp.Server_lijst[index]._usernaam.Substring(a+1);
+                }
+                else
+                {
+                    ef.textBox4.Text = DataRdp.Server_lijst[index]._usernaam;
+                }
 
                 ef.VncToggle.Checked = DataRdp.Server_lijst[index]._domein == "VNC";
 
@@ -107,7 +117,15 @@ namespace RDPKeuze
                         DataRdp.Server_lijst[index]._adres = ef.textBox3.Text;
                         DataRdp.Server_lijst[index]._plaats = ef.textBox2.Text;
                         DataRdp.Server_lijst[index]._sectie = ef.textBox1.Text;
-                        DataRdp.Server_lijst[index]._usernaam = ef.textBox4.Text;
+
+                        if(ef.comboBoxDomein.Text != "")
+                        {
+                            DataRdp.Server_lijst[index]._usernaam = $"{ef.comboBoxDomein.Text}\\{ef.textBox4.Text}";
+                        }
+                        else
+                        {
+                            DataRdp.Server_lijst[index]._usernaam = ef.textBox4.Text;
+                        }
 
                         DataRdp.Server_lijst[index]._domein = "RDP";
                         

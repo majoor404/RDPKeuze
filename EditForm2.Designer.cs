@@ -43,6 +43,8 @@
             this.textBoxImport = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.buttonNameServer = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBoxDomein = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label4
@@ -58,9 +60,9 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(215, 136);
+            this.textBox4.Location = new System.Drawing.Point(408, 136);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(420, 24);
+            this.textBox4.Size = new System.Drawing.Size(227, 24);
             this.textBox4.TabIndex = 17;
             // 
             // label3
@@ -188,17 +190,43 @@
             this.buttonNameServer.UseVisualStyleBackColor = true;
             this.buttonNameServer.Click += new System.EventHandler(this.buttonNameServer_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(386, 138);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(12, 18);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "\\";
+            // 
+            // comboBoxDomein
+            // 
+            this.comboBoxDomein.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxDomein.FormattingEnabled = true;
+            this.comboBoxDomein.Items.AddRange(new object[] {
+            "",
+            "ijmprod",
+            "edis",
+            "ce"});
+            this.comboBoxDomein.Location = new System.Drawing.Point(215, 135);
+            this.comboBoxDomein.Name = "comboBoxDomein";
+            this.comboBoxDomein.Size = new System.Drawing.Size(159, 26);
+            this.comboBoxDomein.TabIndex = 28;
+            // 
             // EditForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 514);
+            this.Controls.Add(this.comboBoxDomein);
             this.Controls.Add(this.buttonNameServer);
             this.Controls.Add(this.textBoxImport);
             this.Controls.Add(this.ButImportRdp);
             this.Controls.Add(this.ButSave);
             this.Controls.Add(this.ButClose2);
             this.Controls.Add(this.VncToggle);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label3);
@@ -231,5 +259,7 @@
         private System.Windows.Forms.TextBox textBoxImport;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button buttonNameServer;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.ComboBox comboBoxDomein;
     }
 }

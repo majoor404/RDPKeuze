@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RDPKeuze
 {
@@ -69,30 +63,31 @@ namespace RDPKeuze
             {
                 List<string> nameservers = File.ReadAllLines("nameserver.txt").ToList();
 
-                for (int i = 0; i < nameservers.Count; i++)
+                for (int i = 0; i < nameservers.Count / 2; i += 2)
                 {
                     if (TestEnMeld(textBox3, nameservers[i]))
                     {
-                        textBox3.Text = textBox3.Text + nameservers[i];
+                        textBox3.Text += nameservers[i];
+                        comboBoxDomein.Text = nameservers[i + 1];
                         break;
                     }
                 }
 
-                MessageBox.Show("Klaar zoeken");
+                _ = MessageBox.Show("Klaar zoeken");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                _ = MessageBox.Show(ex.Message);
             }
         }
 
         private static bool TestEnMeld(System.Windows.Forms.TextBox server, string nameserver)
         {
             string text = server.Text + nameserver;
-            MessageBox.Show($"Ping naar {text}");
+            _ = MessageBox.Show($"Ping naar {text}");
             if (PingHost(text))
             {
-                MessageBox.Show("Klaar zoeken, druk op Save.");
+                _ = MessageBox.Show("Klaar zoeken, druk op Save.");
                 return true;
             }
             else
