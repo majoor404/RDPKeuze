@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace RDPKeuze
@@ -43,11 +44,20 @@ namespace RDPKeuze
 
                 if (regel.Length > 11 && regel.Substring(0, 11) == "username:s:")
                 {
-                    textBox4.Text = regel.Substring(11);
+                    string user = regel.Substring(11);
+
+                    int a = user.IndexOf("\\");
+                    if (a > -1)
+                    {
+                        comboBoxDomein.Text = user.Substring(0, a);
+                        textBox4.Text = user.Substring(a + 1);
+                    }
+                    else
+                    {
+                        textBox4.Text = user;
+                    }
                 }
-
                 textBox2.Text = Path.GetFileNameWithoutExtension(open.FileName);
-
             }
         }
 

@@ -186,7 +186,7 @@
             this.buttonNameServer.Name = "buttonNameServer";
             this.buttonNameServer.Size = new System.Drawing.Size(246, 45);
             this.buttonNameServer.TabIndex = 27;
-            this.buttonNameServer.Text = "Zoek juiste name server / Domein";
+            this.buttonNameServer.Text = "Zoek juiste Domein";
             this.buttonNameServer.UseVisualStyleBackColor = true;
             this.buttonNameServer.Click += new System.EventHandler(this.buttonNameServer_Click);
             // 
