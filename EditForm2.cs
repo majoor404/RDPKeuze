@@ -71,7 +71,7 @@ namespace RDPKeuze
 
             try
             {
-                List<string> nameservers = File.ReadAllLines("nameserver.txt").ToList();
+                List<string> nameservers = File.ReadAllLines(FormRdpKeuze.datapath + "nameserver.txt").ToList();
 
                 for (int i = 0; i < nameservers.Count / 2; i += 2)
                 {

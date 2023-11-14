@@ -45,7 +45,7 @@ namespace RDPKeuze
             try
             {
                 wachtwoord_lijst.Clear();
-                string xmlTekst = File.ReadAllText("ww.xml");
+                string xmlTekst = File.ReadAllText(FormRdpKeuze.datapath + "ww.xml");
                 wachtwoord_lijst = FromXML<List<wachtwoord>>(xmlTekst);
             }
             catch { }
@@ -68,7 +68,7 @@ namespace RDPKeuze
             try
             {
                 string xmlTekst = ToXML(wachtwoord_lijst);
-                File.WriteAllText("ww.xml", xmlTekst);
+                File.WriteAllText(FormRdpKeuze.datapath + "ww.xml", xmlTekst);
             }
             catch { }
         }

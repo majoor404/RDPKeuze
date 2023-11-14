@@ -10,16 +10,18 @@ namespace RDPKeuze
     public partial class FormRdpKeuze : Form
     {
         private string vnc_adres = "";
+        public static string datapath = "";
         public FormRdpKeuze()
         {
             InitializeComponent();
+            datapath = AppDomain.CurrentDomain.BaseDirectory;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //laad ronald.rdp in textbox
             //DataRdp.Lees_server_lijst(); zit in updateUI
-            textBox.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
+            textBox.Text = File.ReadAllText(datapath+"ronald.rdp", Encoding.ASCII);
             UpdateUi();
         }
 
@@ -31,7 +33,7 @@ namespace RDPKeuze
             if (!vnclabel.Visible)
             {
                 // save naar ronald.rdp
-                File.WriteAllText("ronald.rdp", textBox.Text);
+                File.WriteAllText(datapath + "ronald.rdp", textBox.Text);
                 // run ...
                 _ = Process.Start(@"ronald.rdp");
             }
@@ -229,7 +231,7 @@ namespace RDPKeuze
 
                 multischerm.Checked = a._multiscreen;
 
-                textBoxTemp.Text = File.ReadAllText("ronald.rdp", Encoding.ASCII);
+                textBoxTemp.Text = File.ReadAllText(datapath + "ronald.rdp", Encoding.ASCII);
                 textBox.Clear();
 
                 textBox.AppendText("full address:s:" + a._adres);

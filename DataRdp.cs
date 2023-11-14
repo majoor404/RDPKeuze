@@ -26,7 +26,7 @@ namespace RDPKeuze
             try
             {
                 Server_lijst.Clear();
-                string xmlTekst = File.ReadAllText("data.xml");
+                string xmlTekst = File.ReadAllText(FormRdpKeuze.datapath + "data.xml");
                 Server_lijst = FromXML<List<server>>(xmlTekst);
             }
             catch { }
@@ -37,7 +37,7 @@ namespace RDPKeuze
             try
             {
                 string xmlTekst = ToXML(Server_lijst);
-                File.WriteAllText("data.xml", xmlTekst);
+                File.WriteAllText(FormRdpKeuze.datapath + "data.xml", xmlTekst);
             }
             catch { }
         }
