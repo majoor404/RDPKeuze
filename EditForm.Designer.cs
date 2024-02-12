@@ -41,6 +41,8 @@
             this.ButDel2 = new System.Windows.Forms.Button();
             this.ButClose2 = new System.Windows.Forms.Button();
             this.ButCopy2 = new System.Windows.Forms.Button();
+            this.CBFilter = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label6
@@ -104,6 +106,7 @@
             this.button1.TabIndex = 20;
             this.button1.Text = "Refresh / Sorteer";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.buttonSorteer_Click);
             // 
             // ButEdit2
@@ -161,17 +164,39 @@
             this.ButCopy2.UseVisualStyleBackColor = true;
             this.ButCopy2.Click += new System.EventHandler(this.buttonCopy_Click);
             // 
+            // CBFilter
+            // 
+            this.CBFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBFilter.FormattingEnabled = true;
+            this.CBFilter.Location = new System.Drawing.Point(610, 694);
+            this.CBFilter.Name = "CBFilter";
+            this.CBFilter.Size = new System.Drawing.Size(121, 26);
+            this.CBFilter.TabIndex = 25;
+            this.CBFilter.TextChanged += new System.EventHandler(this.CBFilter_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(555, 702);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 18);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Filter";
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 790);
+            this.Controls.Add(this.CBFilter);
             this.Controls.Add(this.ButCopy2);
             this.Controls.Add(this.ButClose2);
             this.Controls.Add(this.ButDel2);
             this.Controls.Add(this.ButNew2);
             this.Controls.Add(this.ButEdit2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ListView);
             this.Name = "EditForm";
@@ -197,5 +222,7 @@
         private System.Windows.Forms.Button ButDel2;
         private System.Windows.Forms.Button ButClose2;
         private System.Windows.Forms.Button ButCopy2;
+        private System.Windows.Forms.ComboBox CBFilter;
+        private System.Windows.Forms.Label label1;
     }
 }

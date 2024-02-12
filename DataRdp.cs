@@ -34,6 +34,7 @@ namespace RDPKeuze
 
         public static void Schrijf_server_lijst()
         {
+            Sorteer();
             try
             {
                 string xmlTekst = ToXML(Server_lijst);
