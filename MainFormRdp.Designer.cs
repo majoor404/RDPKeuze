@@ -44,12 +44,14 @@
             this.multischerm = new System.Windows.Forms.CheckBox();
             this.vnclabel = new System.Windows.Forms.Label();
             this.buttonWW = new System.Windows.Forms.Button();
+            this.UserLijst = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox
             // 
             this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox.Location = new System.Drawing.Point(243, 12);
+            this.textBox.Location = new System.Drawing.Point(201, 5);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(745, 606);
@@ -59,7 +61,7 @@
             // StartButton
             // 
             this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.Location = new System.Drawing.Point(12, 198);
+            this.StartButton.Location = new System.Drawing.Point(9, 259);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(378, 90);
             this.StartButton.TabIndex = 3;
@@ -102,7 +104,7 @@
             // EditLijst
             // 
             this.EditLijst.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditLijst.Location = new System.Drawing.Point(12, 346);
+            this.EditLijst.Location = new System.Drawing.Point(9, 407);
             this.EditLijst.Name = "EditLijst";
             this.EditLijst.Size = new System.Drawing.Size(378, 43);
             this.EditLijst.TabIndex = 7;
@@ -146,7 +148,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(12, 408);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(9, 469);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(207, 13);
             this.linkLabelGitHub.TabIndex = 14;
@@ -157,7 +159,7 @@
             // textBoxZoek
             // 
             this.textBoxZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxZoek.Location = new System.Drawing.Point(12, 166);
+            this.textBoxZoek.Location = new System.Drawing.Point(9, 227);
             this.textBoxZoek.Name = "textBoxZoek";
             this.textBoxZoek.Size = new System.Drawing.Size(376, 24);
             this.textBoxZoek.TabIndex = 15;
@@ -168,7 +170,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 144);
+            this.label3.Location = new System.Drawing.Point(9, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 18);
             this.label3.TabIndex = 8;
@@ -178,7 +180,7 @@
             // 
             this.multischerm.AutoSize = true;
             this.multischerm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.multischerm.Location = new System.Drawing.Point(32, 294);
+            this.multischerm.Location = new System.Drawing.Point(29, 355);
             this.multischerm.Name = "multischerm";
             this.multischerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.multischerm.Size = new System.Drawing.Size(356, 22);
@@ -201,7 +203,7 @@
             // buttonWW
             // 
             this.buttonWW.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonWW.Location = new System.Drawing.Point(316, 400);
+            this.buttonWW.Location = new System.Drawing.Point(313, 461);
             this.buttonWW.Name = "buttonWW";
             this.buttonWW.Size = new System.Drawing.Size(74, 26);
             this.buttonWW.TabIndex = 7;
@@ -209,11 +211,33 @@
             this.buttonWW.UseVisualStyleBackColor = true;
             this.buttonWW.Click += new System.EventHandler(this.buttonWW_Click);
             // 
+            // UserLijst
+            // 
+            this.UserLijst.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UserLijst.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.UserLijst.FormattingEnabled = true;
+            this.UserLijst.Location = new System.Drawing.Point(12, 167);
+            this.UserLijst.Name = "UserLijst";
+            this.UserLijst.Size = new System.Drawing.Size(370, 26);
+            this.UserLijst.TabIndex = 17;
+            this.UserLijst.SelectedIndexChanged += new System.EventHandler(this.UserLijst_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(12, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 18);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Standaard User";
+            // 
             // FormRdpKeuze
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 435);
+            this.ClientSize = new System.Drawing.Size(403, 501);
+            this.Controls.Add(this.UserLijst);
             this.Controls.Add(this.multischerm);
             this.Controls.Add(this.textBoxZoek);
             this.Controls.Add(this.linkLabelGitHub);
@@ -221,6 +245,7 @@
             this.Controls.Add(this.LocatiePlaatst);
             this.Controls.Add(this.computerlijst);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonWW);
             this.Controls.Add(this.EditLijst);
@@ -258,6 +283,8 @@
         private System.Windows.Forms.CheckBox multischerm;
         private System.Windows.Forms.Label vnclabel;
         private System.Windows.Forms.Button buttonWW;
+        private System.Windows.Forms.ComboBox UserLijst;
+        private System.Windows.Forms.Label label4;
     }
 }
 

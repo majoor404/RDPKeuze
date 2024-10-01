@@ -79,6 +79,8 @@ namespace RDPKeuze
 
             computerlijst.Items.Clear();
             computerlijst.SelectedIndex = -1;
+            UserLijst.Items.Clear();
+            UserLijst.SelectedIndex = -1;
             LocatiePlaatst.Text = "";
         }
 
@@ -108,6 +110,30 @@ namespace RDPKeuze
             {
                 if (a._plaats == computerlijst.Text && a._sectie == SectieLijst.Text)
                 {
+                    string standaard = $"{ a._usernaam}";
+                    UserLijst.Items.Clear();
+                    UserLijst.Items.Add(standaard);
+                    UserLijst.Items.Add("ijmprod\\ijmox2storing");
+                    UserLijst.Items.Add("ijmprod\\ijpox2tsb");
+                    UserLijst.Items.Add("ijmprod\\ijpox2acl1_eng");
+                    UserLijst.Items.Add("edis\\ijmox2tsb1");
+                   UserLijst.SelectedIndex = 0;
+                    SchrijfDataIntextBox(a);
+                }
+            }
+        }
+
+        private void UserLijst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UserLijst.SelectedIndex == 0)
+                return;
+
+            foreach (server a in DataRdp.Server_lijst)
+            {
+                if (a._plaats == computerlijst.Text && a._sectie == SectieLijst.Text)
+                {
+                    // andere usernaam gekozen
+                    a._usernaam = UserLijst.Text;
                     SchrijfDataIntextBox(a);
                 }
             }
@@ -117,6 +143,8 @@ namespace RDPKeuze
         {
             computerlijst.Items.Clear();
             computerlijst.SelectedIndex = -1;
+            UserLijst.Items.Clear();
+            UserLijst.SelectedIndex = -1;
             LocatiePlaatst.Text = "";
             textBoxZoek.Text = "";
             vnclabel.Visible = false;
@@ -297,5 +325,7 @@ namespace RDPKeuze
 
 #endif
         }
+
+        
     }
 }

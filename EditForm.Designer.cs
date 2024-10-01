@@ -49,7 +49,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(647, 763);
+            this.label6.Location = new System.Drawing.Point(926, 763);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(250, 18);
             this.label6.TabIndex = 17;
@@ -69,7 +69,7 @@
             this.ListView.HideSelection = false;
             this.ListView.Location = new System.Drawing.Point(16, 12);
             this.ListView.Name = "ListView";
-            this.ListView.Size = new System.Drawing.Size(893, 653);
+            this.ListView.Size = new System.Drawing.Size(1193, 653);
             this.ListView.TabIndex = 15;
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
@@ -86,16 +86,17 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Plaats";
-            this.columnHeader3.Width = 280;
+            this.columnHeader3.Width = 289;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Sectie";
+            this.columnHeader4.Width = 263;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Usernaam";
-            this.columnHeader5.Width = 150;
+            this.columnHeader5.Width = 278;
             // 
             // button1
             // 
@@ -145,7 +146,7 @@
             // ButClose2
             // 
             this.ButClose2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButClose2.Location = new System.Drawing.Point(772, 683);
+            this.ButClose2.Location = new System.Drawing.Point(1051, 683);
             this.ButClose2.Name = "ButClose2";
             this.ButClose2.Size = new System.Drawing.Size(137, 46);
             this.ButClose2.TabIndex = 24;
@@ -168,9 +169,9 @@
             // 
             this.CBFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBFilter.FormattingEnabled = true;
-            this.CBFilter.Location = new System.Drawing.Point(610, 694);
+            this.CBFilter.Location = new System.Drawing.Point(752, 694);
             this.CBFilter.Name = "CBFilter";
-            this.CBFilter.Size = new System.Drawing.Size(121, 26);
+            this.CBFilter.Size = new System.Drawing.Size(238, 26);
             this.CBFilter.TabIndex = 25;
             this.CBFilter.TextChanged += new System.EventHandler(this.CBFilter_TextChanged);
             // 
@@ -178,7 +179,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(555, 702);
+            this.label1.Location = new System.Drawing.Point(697, 702);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 18);
             this.label1.TabIndex = 17;
@@ -188,7 +189,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 790);
+            this.ClientSize = new System.Drawing.Size(1221, 790);
             this.Controls.Add(this.CBFilter);
             this.Controls.Add(this.ButCopy2);
             this.Controls.Add(this.ButClose2);
