@@ -61,7 +61,7 @@
             // StartButton
             // 
             this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.Location = new System.Drawing.Point(9, 259);
+            this.StartButton.Location = new System.Drawing.Point(12, 259);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(378, 90);
             this.StartButton.TabIndex = 3;
@@ -104,7 +104,7 @@
             // EditLijst
             // 
             this.EditLijst.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditLijst.Location = new System.Drawing.Point(9, 407);
+            this.EditLijst.Location = new System.Drawing.Point(12, 407);
             this.EditLijst.Name = "EditLijst";
             this.EditLijst.Size = new System.Drawing.Size(378, 43);
             this.EditLijst.TabIndex = 7;
@@ -159,7 +159,7 @@
             // textBoxZoek
             // 
             this.textBoxZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxZoek.Location = new System.Drawing.Point(9, 227);
+            this.textBoxZoek.Location = new System.Drawing.Point(12, 227);
             this.textBoxZoek.Name = "textBoxZoek";
             this.textBoxZoek.Size = new System.Drawing.Size(376, 24);
             this.textBoxZoek.TabIndex = 15;
@@ -170,7 +170,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 205);
+            this.label3.Location = new System.Drawing.Point(12, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 18);
             this.label3.TabIndex = 8;
@@ -218,7 +218,7 @@
             this.UserLijst.FormattingEnabled = true;
             this.UserLijst.Location = new System.Drawing.Point(12, 167);
             this.UserLijst.Name = "UserLijst";
-            this.UserLijst.Size = new System.Drawing.Size(370, 26);
+            this.UserLijst.Size = new System.Drawing.Size(378, 26);
             this.UserLijst.TabIndex = 17;
             this.UserLijst.SelectedIndexChanged += new System.EventHandler(this.UserLijst_SelectedIndexChanged);
             // 

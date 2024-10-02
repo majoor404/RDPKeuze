@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -113,10 +114,15 @@ namespace RDPKeuze
                     string standaard = $"{ a._usernaam}";
                     UserLijst.Items.Clear();
                     UserLijst.Items.Add(standaard);
-                    UserLijst.Items.Add("ijmprod\\ijmox2storing");
-                    UserLijst.Items.Add("ijmprod\\ijpox2tsb");
-                    UserLijst.Items.Add("ijmprod\\ijpox2acl1_eng");
-                    UserLijst.Items.Add("edis\\ijmox2tsb1");
+                    try
+                    {
+                        List<string> GebruikersNamen = File.ReadAllLines("UserNaam.txt").ToList();
+                        for (int i = 0;i < GebruikersNamen.Count;i++)
+                        {
+                            if(!UserLijst.Items.Contains(GebruikersNamen[i]))
+                                UserLijst.Items.Add(GebruikersNamen[i]);
+                        }
+                    } catch { } 
                    UserLijst.SelectedIndex = 0;
                     SchrijfDataIntextBox(a);
                 }
