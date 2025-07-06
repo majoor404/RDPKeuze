@@ -77,7 +77,7 @@ namespace RDPKeuze
                 {
                     if (TestEnMeld(textBox3, nameservers[i]))
                     {
-                        textBox3.Text += nameservers[i];
+                        textBox3.Text = textBox3.Text + nameservers[i];
                         comboBoxDomein.Text = nameservers[i + 1];
                         break;
                     }
@@ -97,7 +97,7 @@ namespace RDPKeuze
             _ = MessageBox.Show($"Ping naar {text}");
             if (PingHost(text))
             {
-                _ = MessageBox.Show("Klaar zoeken, druk op Save.");
+                _ = MessageBox.Show($"Gevonden, druk op Save.\n{text}");
                 return true;
             }
             else
@@ -120,12 +120,12 @@ namespace RDPKeuze
             catch (PingException)
             {
                 // Discard PingExceptions and return false;
+                return pingable;
             }
             finally
             {
                 pinger?.Dispose();
             }
-
             return pingable;
         }
     }
