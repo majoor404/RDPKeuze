@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace RDPKeuze
             //DataRdp.Lees_server_lijst(); zit in updateUI
             textBox.Text = File.ReadAllText(datapath+"ronald.rdp", Encoding.ASCII);
             UpdateUi();
+
+            ZoekWW.LaadWachtwoorden();
         }
 
         // start button
@@ -51,7 +54,6 @@ namespace RDPKeuze
                 _ = process.Start();
             }
             UpdateUi();
-
             SectieLijst.Text = gekozen_sectie;
         }
 
@@ -294,6 +296,18 @@ namespace RDPKeuze
                 }
                 textBox.SelectionStart = 1;
                 textBox.ScrollToCaret();
+
+                ZoekWW.GetWW(a._usernaam, out string ww);
+
+                if (ww != "")
+                {
+                    // After this call, the data (string) is placed on the clipboard and tagged
+                    // with a data format of "Text".
+                    Clipboard.Clear();
+                    Clipboard.SetData(DataFormats.Text, ww);
+                    WWopClipboard.BackColor = System.Drawing.Color.LimeGreen;
+                    timerResetWWopClipbord.Enabled = true; // na ? sec verwijderen van wachtwoord van klembord
+                }
             }
             else
             {
@@ -302,9 +316,12 @@ namespace RDPKeuze
                 vnclabel.Visible = true;
                 vnc_adres = a._adres;
 
+
                 // After this call, the data (string) is placed on the clipboard and tagged
                 // with a data format of "Text".
+                Clipboard.Clear();
                 Clipboard.SetData(DataFormats.Text, a._usernaam);
+                timerResetWWopClipbord.Enabled = true; // na ? sec verwijderen van wachtwoord van klembord
             }
         }
 
@@ -319,7 +336,7 @@ namespace RDPKeuze
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
             if (testDialog.ShowDialog(this) == DialogResult.OK)
             {
-                if (testDialog.textBox1.Text == "ox2tessa")
+                if (testDialog.textBox1.Text == "Werkplaats4c14!!")
                 {
                     testDialog.Dispose();
                     WachtWoordForm wacht = new WachtWoordForm();
@@ -332,6 +349,11 @@ namespace RDPKeuze
 #endif
         }
 
-        
+        private void timerResetWWopClipbord_Tick(object sender, EventArgs e)
+        {
+            timerResetWWopClipbord.Enabled = false;
+            Clipboard.Clear();
+            WWopClipboard.BackColor = SystemColors.Control; // Control;// System.Drawing.Color.Gray;
+        }
     }
 }

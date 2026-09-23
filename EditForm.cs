@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -47,7 +44,7 @@ namespace RDPKeuze
             CBFilter.Items.Add("");
             foreach (server a in DataRdp.Server_lijst)
             {
-                if(!CBFilter.Items.Contains(a._sectie))
+                if (!CBFilter.Items.Contains(a._sectie))
                     CBFilter.Items.Add($"{a._sectie}");
             }
         }
@@ -85,7 +82,7 @@ namespace RDPKeuze
             if (ListView.SelectedItems.Count > 0)
             {
                 index = GetMainIndex(ListView.Items.IndexOf(ListView.SelectedItems[0]));
-                server a = new server(DataRdp.Server_lijst[index]._sectie, DataRdp.Server_lijst[index]._plaats + " " + RandomString(4) , DataRdp.Server_lijst[index]._adres, DataRdp.Server_lijst[index]._usernaam, DataRdp.Server_lijst[index]._domein, false);
+                server a = new server(DataRdp.Server_lijst[index]._sectie, DataRdp.Server_lijst[index]._plaats + " " + RandomString(4), DataRdp.Server_lijst[index]._adres, DataRdp.Server_lijst[index]._usernaam, DataRdp.Server_lijst[index]._domein, false);
                 DataRdp.Server_lijst.Add(a);
                 EditForm_Shown(this, null);
             }
@@ -124,12 +121,12 @@ namespace RDPKeuze
                 ef.textBox3.Text = DataRdp.Server_lijst[index]._adres;
                 ef.textBox2.Text = DataRdp.Server_lijst[index]._plaats;
                 ef.textBox1.Text = DataRdp.Server_lijst[index]._sectie;
-                
+
                 int a = DataRdp.Server_lijst[index]._usernaam.IndexOf("\\");
-                if(a > -1)
+                if (a > -1)
                 {
                     ef.comboBoxDomein.Text = DataRdp.Server_lijst[index]._usernaam.Substring(0, a);
-                    ef.textBox4.Text = DataRdp.Server_lijst[index]._usernaam.Substring(a+1);
+                    ef.textBox4.Text = DataRdp.Server_lijst[index]._usernaam.Substring(a + 1);
                 }
                 else
                 {
@@ -140,21 +137,21 @@ namespace RDPKeuze
 
                 DialogResult dialogResult = ef.ShowDialog();
 
-                if(dialogResult == DialogResult.OK)
+                if (dialogResult == DialogResult.OK)
                 {
                     if (ef.textBox1.Text == "")
                     {
                         _ = MessageBox.Show("Vul Sectie in voor \"Save\"");
                         return;
                     }
-                    
+
                     if (ListView.SelectedItems.Count > 0)
                     {
                         DataRdp.Server_lijst[index]._adres = ef.textBox3.Text;
                         DataRdp.Server_lijst[index]._plaats = ef.textBox2.Text;
                         DataRdp.Server_lijst[index]._sectie = ef.textBox1.Text;
 
-                        if(ef.comboBoxDomein.Text != "")
+                        if (ef.comboBoxDomein.Text != "")
                         {
                             DataRdp.Server_lijst[index]._usernaam = $"{ef.comboBoxDomein.Text}\\{ef.textBox4.Text}";
                         }
@@ -164,7 +161,7 @@ namespace RDPKeuze
                         }
 
                         DataRdp.Server_lijst[index]._domein = "RDP";
-                        
+
                         if (ef.VncToggle.Checked)
                         {
                             DataRdp.Server_lijst[index]._domein = "VNC";
@@ -207,7 +204,7 @@ namespace RDPKeuze
         {
             EditForm_Shown(this, null);
         }
-        
+
 
         private static string RandomString(int length)
         {

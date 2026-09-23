@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRdpKeuze));
             this.textBox = new System.Windows.Forms.TextBox();
             this.StartButton = new System.Windows.Forms.Button();
@@ -46,6 +47,9 @@
             this.buttonWW = new System.Windows.Forms.Button();
             this.UserLijst = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.timerResetWWopClipbord = new System.Windows.Forms.Timer(this.components);
+            this.WWopClipboard = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // textBox
@@ -54,16 +58,16 @@
             this.textBox.Location = new System.Drawing.Point(201, 5);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(745, 606);
+            this.textBox.Size = new System.Drawing.Size(745, 631);
             this.textBox.TabIndex = 0;
             this.textBox.Visible = false;
             // 
             // StartButton
             // 
             this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.Location = new System.Drawing.Point(12, 259);
+            this.StartButton.Location = new System.Drawing.Point(12, 267);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(378, 90);
+            this.StartButton.Size = new System.Drawing.Size(375, 70);
             this.StartButton.TabIndex = 3;
             this.StartButton.Text = "Maak Contact";
             this.StartButton.UseVisualStyleBackColor = true;
@@ -159,7 +163,7 @@
             // textBoxZoek
             // 
             this.textBoxZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxZoek.Location = new System.Drawing.Point(12, 227);
+            this.textBoxZoek.Location = new System.Drawing.Point(12, 220);
             this.textBoxZoek.Name = "textBoxZoek";
             this.textBoxZoek.Size = new System.Drawing.Size(376, 24);
             this.textBoxZoek.TabIndex = 15;
@@ -170,7 +174,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 205);
+            this.label3.Location = new System.Drawing.Point(12, 199);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 18);
             this.label3.TabIndex = 8;
@@ -180,7 +184,7 @@
             // 
             this.multischerm.AutoSize = true;
             this.multischerm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.multischerm.Location = new System.Drawing.Point(29, 355);
+            this.multischerm.Location = new System.Drawing.Point(29, 367);
             this.multischerm.Name = "multischerm";
             this.multischerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.multischerm.Size = new System.Drawing.Size(356, 22);
@@ -232,11 +236,27 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Standaard User";
             // 
+            // timerResetWWopClipbord
+            // 
+            this.timerResetWWopClipbord.Interval = 10000;
+            this.timerResetWWopClipbord.Tick += new System.EventHandler(this.timerResetWWopClipbord_Tick);
+            // 
+            // WWopClipboard
+            // 
+            this.WWopClipboard.BackColor = System.Drawing.SystemColors.Control;
+            this.WWopClipboard.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.WWopClipboard.Location = new System.Drawing.Point(281, 461);
+            this.WWopClipboard.Name = "WWopClipboard";
+            this.WWopClipboard.Size = new System.Drawing.Size(26, 26);
+            this.WWopClipboard.TabIndex = 18;
+            this.toolTip1.SetToolTip(this.WWopClipboard, "Als groen dan staat tijdelijk Wachtwoord op klembord");
+            // 
             // FormRdpKeuze
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(403, 501);
+            this.Controls.Add(this.StartButton);
             this.Controls.Add(this.UserLijst);
             this.Controls.Add(this.multischerm);
             this.Controls.Add(this.textBoxZoek);
@@ -252,8 +272,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SectieLijst);
             this.Controls.Add(this.textBoxTemp);
-            this.Controls.Add(this.StartButton);
             this.Controls.Add(this.textBox);
+            this.Controls.Add(this.WWopClipboard);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormRdpKeuze";
@@ -285,6 +305,9 @@
         private System.Windows.Forms.Button buttonWW;
         private System.Windows.Forms.ComboBox UserLijst;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Timer timerResetWWopClipbord;
+        private System.Windows.Forms.Panel WWopClipboard;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

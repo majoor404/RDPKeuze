@@ -99,6 +99,7 @@
     <Compile Include="ZoekEnSelect.Designer.cs">
       <DependentUpon>ZoekEnSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="ZoekWW.cs" />
     <EmbeddedResource Include="EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
     </EmbeddedResource>

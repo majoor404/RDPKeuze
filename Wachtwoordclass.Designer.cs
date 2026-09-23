@@ -40,9 +40,9 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nieuwToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verwijderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sorteerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.sorteerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PupupMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,7 +117,7 @@
             this.verwijderToolStripMenuItem,
             this.sorteerToolStripMenuItem});
             this.PupupMenu.Name = "contextMenuStrip1";
-            this.PupupMenu.Size = new System.Drawing.Size(181, 114);
+            this.PupupMenu.Size = new System.Drawing.Size(123, 92);
             // 
             // editToolStripMenuItem
             // 
@@ -140,6 +140,13 @@
             this.verwijderToolStripMenuItem.Text = "Verwijder";
             this.verwijderToolStripMenuItem.Click += new System.EventHandler(this.verwijderToolStripMenuItem_Click);
             // 
+            // sorteerToolStripMenuItem
+            // 
+            this.sorteerToolStripMenuItem.Name = "sorteerToolStripMenuItem";
+            this.sorteerToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.sorteerToolStripMenuItem.Text = "Sorteer";
+            this.sorteerToolStripMenuItem.Click += new System.EventHandler(this.sorteerToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -159,13 +166,6 @@
             this.label2.Size = new System.Drawing.Size(99, 18);
             this.label2.TabIndex = 19;
             this.label2.Text = "En toevoegen";
-            // 
-            // sorteerToolStripMenuItem
-            // 
-            this.sorteerToolStripMenuItem.Name = "sorteerToolStripMenuItem";
-            this.sorteerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sorteerToolStripMenuItem.Text = "Sorteer";
-            this.sorteerToolStripMenuItem.Click += new System.EventHandler(this.sorteerToolStripMenuItem_Click);
             // 
             // WachtWoordForm
             // 
