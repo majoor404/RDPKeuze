@@ -6,8 +6,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RDPKeuze
 {
+    // Bewerkvenster voor de serverlijst (data.xml).
+    // Toont de servers in een ListView, eventueel gefilterd op sectie, en kan
+    // verwijderen/kopiëren/bewerken/aanmaken. Elke wijziging wordt direct weggeschreven
+    // met DataRdp.Schrijf_server_lijst(); de hoofdvorm leest het bestand daarna opnieuw.
     public partial class EditForm : Form
     {
+        // Index in DataRdp.Server_lijst van de rij die in de ListView geselecteerd is;
+        // -1 betekent "niet gevonden" (dan wordt er niets aangepast).
         private int index = -1;
         private static readonly Random random = new Random();
 
@@ -17,6 +23,9 @@ namespace RDPKeuze
             VulFilter();
         }
 
+        // (Her)vult de ListView vanuit DataRdp.Server_lijst, alleen met de servers uit de
+        // sectie die in CBFilter gekozen is (leeg = alles). Wordt ook als verversing
+        // aangeroepen na verwijderen/bewerken/kopiëren en bij een filterwijziging.
         private void EditForm_Shown(object sender, EventArgs e)
         {
             //textBoxImport.Visible = false;
@@ -38,6 +47,7 @@ namespace RDPKeuze
             }
         }
 
+        // Vult de sectiekeuze (filter) met alle unieke secties uit de serverlijst.
         private void VulFilter()
         {
             CBFilter.Items.Clear();
@@ -54,36 +64,53 @@ namespace RDPKeuze
             Close();
         }
 
+        // Verwijderen: alleen doorgaan bij een selectie, daarna vragen om bevestiging,
+        // de server uit de lijst halen, data.xml wegschrijven en de ListView verversen.
         private void buttonDel_Click(object sender, EventArgs e)
         {
+            if (ListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
             DialogResult dialogResult = MessageBox.Show("verwijder ?", "Verwijder deze server", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (ListView.SelectedItems.Count > 0)
+                index = GetMainIndex(ListView.Items.IndexOf(ListView.SelectedItems[0]));
+                if (index < 0)
                 {
-                    index = GetMainIndex(ListView.Items.IndexOf(ListView.SelectedItems[0]));
-                    //index = ListView.Items.IndexOf(ListView.SelectedItems[0]);
-                    DataRdp.Server_lijst.RemoveAt(index);
-                    DataRdp.Schrijf_server_lijst();
-                    EditForm_Shown(this, null);
+                    return;
                 }
+                DataRdp.Server_lijst.RemoveAt(index);
+                DataRdp.Schrijf_server_lijst();
+                EditForm_Shown(this, null);
             }
         }
 
 
+        // Sorteren op sectie en wegschrijven (Schrijf_server_lijst sorteert zelf ook);
+        // alleen sorteren zonder schrijven zou na sluiten weer ongedaan gemaakt worden.
         public void buttonSorteer_Click(object sender, EventArgs e)
         {
-            DataRdp.Sorteer();
+            DataRdp.Schrijf_server_lijst();
             EditForm_Shown(this, null);
         }
 
+        // Kopieert de geselecteerde server met een random suffix op de plaatsnaam
+        // (bijv. "PC01 A1B2") zodat je een variant kunt aanmaken zonder het origineel
+        // te raken; multischerm wordt bij de kopie altijd uitgezet.
         private void buttonCopy_Click(object sender, EventArgs e)
         {
             if (ListView.SelectedItems.Count > 0)
             {
                 index = GetMainIndex(ListView.Items.IndexOf(ListView.SelectedItems[0]));
+                if (index < 0)
+                {
+                    return;
+                }
                 server a = new server(DataRdp.Server_lijst[index]._sectie, DataRdp.Server_lijst[index]._plaats + " " + RandomString(4), DataRdp.Server_lijst[index]._adres, DataRdp.Server_lijst[index]._usernaam, DataRdp.Server_lijst[index]._domein, false);
                 DataRdp.Server_lijst.Add(a);
+                DataRdp.Schrijf_server_lijst();
                 EditForm_Shown(this, null);
             }
             else
@@ -92,23 +119,32 @@ namespace RDPKeuze
             }
         }
 
+        // Zet de geselecteerde ListView-rij om naar het bijbehorende index in
+        // DataRdp.Server_lijst. De ListView kan gefilterd/gesorteerd zijn, dus er wordt
+        // gematcht op de zichtbare velden (adres, plaats, sectie, usernaam).
+        // -1 terug als de rij niet in de lijst staat; de aanroepers stoppen dan.
         private int GetMainIndex(int GesorteerdeIndex)
         {
             int index = 0;
 
             string adres = ListView.Items[GesorteerdeIndex].SubItems[0].Text;
+            string sectie = ListView.Items[GesorteerdeIndex].SubItems[3].Text;
             string plaats = ListView.Items[GesorteerdeIndex].SubItems[2].Text;
             string user = ListView.Items[GesorteerdeIndex].SubItems[4].Text;
 
             foreach (server a in DataRdp.Server_lijst)
             {
-                if (a._adres == adres && a._plaats == plaats && a._usernaam == user)
+                if (a._adres == adres && a._plaats == plaats && a._sectie == sectie && a._usernaam == user)
                     return index;
                 index++;
             }
 
             return -1;
         }
+        // Bewerken: opent EditForm2 met de waarden van de geselecteerde server. Bij OK
+        // wordt alles teruggeschreven (sectie is verplicht), wordt _domein opnieuw als
+        // type-aanduiding ("RDP", of "VNC" als de toggle aan staat) gezet en data.xml
+        // weggeschreven.
         private void ButEdit2_Click(object sender, EventArgs e)
         {
             if (ListView.SelectedItems.Count > 0)
@@ -116,6 +152,10 @@ namespace RDPKeuze
                 EditForm2 ef = new EditForm2();
 
                 index = GetMainIndex(ListView.Items.IndexOf(ListView.SelectedItems[0]));
+                if (index < 0)
+                {
+                    return;
+                }
 
                 //index = ListView.Items.IndexOf(ListView.SelectedItems[0]);
                 ef.textBox3.Text = DataRdp.Server_lijst[index]._adres;
@@ -174,6 +214,7 @@ namespace RDPKeuze
             }
         }
 
+        // Nieuw: opent een leeg EditForm2; bij OK wordt de server toegevoegd en opgeslagen.
         private void ButNew2_Click(object sender, EventArgs e)
         {
             EditForm2 ef = new EditForm2();
@@ -200,12 +241,14 @@ namespace RDPKeuze
             }
         }
 
+        // Filter gewijzigd → ListView opnieuw vullen met de nieuwe selectie.
         private void CBFilter_TextChanged(object sender, EventArgs e)
         {
             EditForm_Shown(this, null);
         }
 
 
+        // Random tekst van letters/cijfers, gebruikt als suffix voor een gekopieerde server.
         private static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

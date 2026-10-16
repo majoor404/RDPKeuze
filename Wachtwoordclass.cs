@@ -9,8 +9,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace RDPKeuze
 {
+    // Wachtwoordbeheer: overzicht van alle wachtwoorden uit ww.xml.
+    // Bewaren gebeurt verhaspeld (Scramble) en laden onthaspeld (Unscramble); dat is
+    // GEEN encryptie, alleen onherkenbaar maken. Let op: het bestand wordt pas
+    // weggeschreven bij verwijderen/sorteren (Save); bewerken/aanmaken gaat via
+    // dezelfde sorteerknop, dus ook die slaat op.
     public partial class WachtWoordForm : Form
     {
+        // De lijst die dit venster toont; gedeeld (static) zodat de hulpjes hem kunnen gebruiken.
         public static List<wachtwoord> wachtwoord_lijst = new List<wachtwoord>();
 
         public WachtWoordForm()
@@ -23,6 +29,7 @@ namespace RDPKeuze
             LaadZienOpScherm();
         }
 
+        // Alles: (her)laden uit ww.xml en opnieuw in de ListView tonen.
         private void LaadZienOpScherm()
         {
             Laad();
@@ -40,6 +47,8 @@ namespace RDPKeuze
             }
         }
 
+        // Leest ww.xml en onthasbelt de wachtwoorden in het geheugen (klaar voor tonen).
+        // Lezen mislukt → lege lijst; er wordt nooit een foutmelding getoond.
         private void Laad()
         {
             try
@@ -57,6 +66,9 @@ namespace RDPKeuze
             }
         }
 
+        // Verhaspelt de wachtwoorden in de lijst en schrijft ww.xml weg.
+        // NB: daarna staat de lijst verhaspeld in het geheugen; daarom wordt Save()
+        // altijd gevolgd door LaadZienOpScherm(), die opnieuw leest en onthaspelt.
         private void Save()
         {
             // scrammble
@@ -92,11 +104,15 @@ namespace RDPKeuze
             }
         }
 
+        // Knop Sluiten.
         private void buttonClose_Click(object sender, System.EventArgs e)
         {
             Close();
         }
 
+        // Verhaspelen: elke letter wordt +2 en + (aantal letters - positie) opgeschoven.
+        // Unscramble doet precies het omgekeerde; verander je één van beide, dan worden
+        // bestaande ww.xml-bestanden onleesbaar. Deze twee functies horen bij elkaar.
         public static string Scramble(string woord)
         {
             // string test = unscramble("twtvfw8;");
@@ -114,6 +130,8 @@ namespace RDPKeuze
             return ret;
         }
 
+        // Onthaspelen: het omgekeerde van Scramble (zie daar). Publiek en static, omdat
+        // ook ZoekWW (het hoofdvenster) hiermee de wachtwoorden uit ww.xml leest.
         public static string Unscramble(string woord)
         {
             string ret = "";
@@ -134,6 +152,7 @@ namespace RDPKeuze
             return ret;
         }
 
+        // Zoeken: opnieuw laden en alleen records tonen waarvan de naam het zoekwoord bevat.
         private void buttonZoek_Click(object sender, System.EventArgs e)
         {
             if (textBoxZoek.Text.Length > 0)
@@ -157,6 +176,9 @@ namespace RDPKeuze
             }
         }
 
+        // Menu Bewerken: opent WachtWoordEdit met de gekozen regel en schrijft de
+        // gewijzigde gegevens terug (via sorteer, dat ook opslaat). Het zoekt de regel
+        // terug op alle drie de velden, zodat alleen het gekozen record aangepast wordt.
         private void editToolStripMenuItem_Click_1(object sender, System.EventArgs e)
         {
             if (ListView.SelectedItems.Count > 0)
@@ -190,6 +212,8 @@ namespace RDPKeuze
             }
         }
 
+        // Menu Nieuw: leeg WachtWoordEdit-venster; bij OK wordt het record toegevoegd
+        // en (via sorteer) opgeslagen.
         private void nieuwToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             WachtWoordEdit ed = new WachtWoordEdit();
@@ -210,8 +234,15 @@ namespace RDPKeuze
             }
         }
 
+        // Menu Verwijderen: verwijdert de geselecteerde regel uit de lijst en slaat op.
+        // Zonder selectie gebeurt er niets (voorkomt een foutmelding).
         private void verwijderToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
+            if (ListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
             string naam = ListView.SelectedItems[0].SubItems[0].Text;
             string user = ListView.SelectedItems[0].SubItems[1].Text;
             string pass = ListView.SelectedItems[0].SubItems[2].Text;
@@ -228,6 +259,8 @@ namespace RDPKeuze
             }
         }
 
+        // Sorteert de lijst op naam, slaat op en ververst het scherm. Wordt ook na
+        // bewerken/nieuw gebruikt om de wijziging weg te schrijven.
         private void sorteerToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             List<wachtwoord> SortedList = wachtwoord_lijst.OrderBy(o => o._naam).ToList();

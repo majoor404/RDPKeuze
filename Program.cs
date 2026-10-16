@@ -10,6 +10,7 @@ namespace RDPKeuze
     {
         /// <summary>
         /// The main entry point for the application.
+        /// Start het hoofdvenster (FormRdpKeuze, staat in MainFormRdp.cs).
         /// </summary>
         [STAThread]
         static void Main()

@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace RDPKeuze
 {
+    // Invoervenster voor één server: gebruikt door EditForm bij Nieuw/Bewerken.
+    // Bevat het importeren van een bestaand .rdp-bestand (leest adres/gebruikersnaam uit)
+    // en een knop om via nameserver.txt + ping de juiste domein-suffix te vinden.
     public partial class EditForm2 : Form
     {
         public EditForm2()
@@ -15,6 +18,9 @@ namespace RDPKeuze
             InitializeComponent();
         }
 
+        // Import: kies een .rdp-bestand en haal daar de servergegevens uit.
+        // textBox2 krijgt de bestandsnaam, textBox3 het adres (full address:s:) en
+        // textBox4/comboBoxDomein de gebruikersnaam (username:s:, gesplitst op "\").
         private void ButImportRdp_Click(object sender, EventArgs e)
         {
             textBoxImport.Clear();
@@ -31,9 +37,10 @@ namespace RDPKeuze
             }
 
             textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = "";
+            textBox2.Text = Path.GetFileNameWithoutExtension(open.FileName);
 
             // zoek nu items en zet in textboxén
-            for (int i = 0; i < textBoxImport.Lines.Count() - 1; i++)
+            for (int i = 0; i < textBoxImport.Lines.Count(); i++)
             {
                 string regel = textBoxImport.Lines[i].Trim();
 
@@ -57,10 +64,13 @@ namespace RDPKeuze
                         textBox4.Text = user;
                     }
                 }
-                textBox2.Text = Path.GetFileNameWithoutExtension(open.FileName);
             }
         }
 
+        // Zoekt de domein-suffix bij de ingevulde servernaam: nameserver.txt staat per
+        // twee regels (eerste = suffix, tweede = bijbehorend domein). Elke suffix wordt
+        // met ping geprobeerd; de eerste die reageert wordt aangevuld in textBox3 en het
+        // domein wordt in comboBoxDomein gezet.
         private void buttonNameServer_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox3.Text) || textBox3.Text == "")
@@ -73,8 +83,13 @@ namespace RDPKeuze
             {
                 List<string> nameservers = File.ReadAllLines(FormRdpKeuze.datapath + "nameserver.txt").ToList();
 
-                for (int i = 0; i < nameservers.Count / 2; i += 2)
+                for (int i = 0; i + 1 < nameservers.Count; i += 2)
                 {
+                    if (string.IsNullOrWhiteSpace(nameservers[i]))
+                    {
+                        continue;
+                    }
+
                     if (TestEnMeld(textBox3, nameservers[i]))
                     {
                         textBox3.Text = textBox3.Text + nameservers[i];
@@ -91,6 +106,7 @@ namespace RDPKeuze
             }
         }
 
+        // Pingt servernaam+suffix en meldt het resultaat; true als het adres bestaat.
         private static bool TestEnMeld(System.Windows.Forms.TextBox server, string nameserver)
         {
             string text = server.Text + nameserver;
@@ -106,6 +122,7 @@ namespace RDPKeuze
             }
         }
 
+        // Pingt een hostnaam; false bij een fout of geen antwoord.
         private static bool PingHost(string nameOrAddress)
         {
             bool pingable = false;

@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace RDPKeuze
 {
+    // Eén wachtwoordrecord uit ww.xml. Let op: de veldnamen _naam, _user en _ww komen
+    // letterlijk in het bestand voor; hernoemen breekt bestaande ww.xml-bestanden.
     public class wachtwoord
     {
-        public string _user;
-        public string _ww;
-        public string _naam;
+        public string _user;           // inlognaam waarop gezocht wordt (moet overeenkomen met server._usernaam)
+        public string _ww;             // het wachtwoord; in ww.xml staat dit verhaspeld (Scramble)
+        public string _naam;           // omschrijving die in het overzicht getoond wordt
 
 
         public wachtwoord() { }
+
+        // Volledige constructor (naam, gebruiker, wachtwoord).
         public wachtwoord(string s, string p, string a)
         {
             _naam = s;

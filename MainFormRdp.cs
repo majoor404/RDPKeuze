@@ -9,27 +9,52 @@ using System.Windows.Forms;
 
 namespace RDPKeuze
 {
+    // Hoofdvenster van RDPKeuze.
+    // Werkwijze: kies sectie -> computer -> (eventueel) andere gebruiker; daarna bouwt
+    // SchrijfDataIntextBox de volledige .rdp-tekst op in de tekstbox, zet het bijbehorende
+    // wachtwoord op het klembord en start de Start-knop mstsc (of vncviewer bij VNC).
+    // Alle data-bestanden staan naast de exe (datapath), niet in de projectmap.
     public partial class FormRdpKeuze : Form
     {
         private string vnc_adres = "";
         public static string datapath = "";
+
         public FormRdpKeuze()
         {
             InitializeComponent();
+            // datapath = map waar de exe in draait; zo worden data.xml, ww.xml en
+            // ronald.rdp altijd gevonden, ongeacht vanaf welke map de app gestart is.
             datapath = AppDomain.CurrentDomain.BaseDirectory;
         }
 
+        // Leest het RDP-templatebestand (ronald.rdp) dat als basis dient voor nieuwe
+        // verbindingen. Bestand ontbreekt of is onleesbaar → geeft "" terug in plaats
+        // van een crash, zodat de app ook op een verse installatie opstart.
+        private static string LeesRdpTemplate()
+        {
+            try
+            {
+                return File.ReadAllText(datapath + "ronald.rdp", Encoding.ASCII);
+            }
+            catch { }
+            return "";
+        }
+
+        // Wordt eenmaal uitgevoerd als het venster voor het eerst getoond wordt:
+        // template inladen, UI vullen (UpdateUi leest data.xml) en wachtwoorden inladen.
         private void Form1_Load(object sender, EventArgs e)
         {
             //laad ronald.rdp in textbox
             //DataRdp.Lees_server_lijst(); zit in updateUI
-            textBox.Text = File.ReadAllText(datapath+"ronald.rdp", Encoding.ASCII);
+            textBox.Text = LeesRdpTemplate();
             UpdateUi();
 
             ZoekWW.LaadWachtwoorden();
         }
 
-        // start button
+        // Start button: schrijft de huidige tekst uit de tekstbox weg naar ronald.rdp en
+        // start dat bestand (Windows opent het met mstsc). Is het VNC-label zichtbaar,
+        // dan wordt in plaats daarvan vncviewer.exe met het VNC-adres gestart.
         private void Button3_Click(object sender, EventArgs e)
         {
             string gekozen_sectie = SectieLijst.Text;
@@ -39,24 +64,29 @@ namespace RDPKeuze
                 // save naar ronald.rdp
                 File.WriteAllText(datapath + "ronald.rdp", textBox.Text);
                 // run ...
-                _ = Process.Start(@"ronald.rdp");
+                _ = Process.Start(datapath + "ronald.rdp");
             }
-            else
+            else if (File.Exists(datapath + "vncviewer.exe"))
             {
                 Process process = new Process
                 {
                     StartInfo =
               {
-                  FileName = "vncviewer.exe",
+                  FileName = datapath + "vncviewer.exe",
                   Arguments = vnc_adres
               }
                 };
                 _ = process.Start();
             }
+            else
+            {
+                _ = MessageBox.Show("vncviewer.exe niet gevonden in de programmamap.");
+            }
             UpdateUi();
             SectieLijst.Text = gekozen_sectie;
         }
 
+        // Opent het bewerkvenster (EditForm) voor de serverlijst en vernieuwt daarna de UI.
         private void EditLijst_Click(object sender, EventArgs e)
         {
             DataRdp.Lees_server_lijst();
@@ -66,6 +96,8 @@ namespace RDPKeuze
             UpdateUi();
         }
 
+        // Centrale verversing: leest data.xml opnieuw en vult de sectie-/computer-/
+        // gebruikerslijsten. Roept dit overal na wijzigingen aan, dan klopt de UI altijd.
         public void UpdateUi()
         {
             DataRdp.Lees_server_lijst();
@@ -87,6 +119,7 @@ namespace RDPKeuze
             LocatiePlaatst.Text = "";
         }
 
+        // Vult de computerlijst met de plaatsnamen die bij de gekozen sectie horen.
         private void Computerlijst_DropDown(object sender, EventArgs e)
         {
             computerlijst.Items.Clear();
@@ -103,6 +136,9 @@ namespace RDPKeuze
             }
         }
 
+        // Er is een computer gekozen: zet de gebruikersopties klaar (standaard de
+        // usernaam van de server, aangevuld met de namen uit UserNaam.txt) en bouw
+        // direct de .rdp-tekst op via SchrijfDataIntextBox.
         private void Computerlijst_SelectedIndexChanged(object sender, EventArgs e)
         {
             LocatiePlaatst.Text = "";
@@ -118,7 +154,7 @@ namespace RDPKeuze
                     UserLijst.Items.Add(standaard);
                     try
                     {
-                        List<string> GebruikersNamen = File.ReadAllLines("UserNaam.txt").ToList();
+                        List<string> GebruikersNamen = File.ReadAllLines(datapath + "UserNaam.txt").ToList();
                         for (int i = 0;i < GebruikersNamen.Count;i++)
                         {
                             if(!UserLijst.Items.Contains(GebruikersNamen[i]))
@@ -131,6 +167,9 @@ namespace RDPKeuze
             }
         }
 
+        // Er is een andere gebruiker gekozen dan de standaard: pas de serverlijst aan
+        // en bouw de .rdp-tekst opnieuw op. Slaat nog niets op; dat gebeurt pas als
+        // ergens Schrijf_server_lijst() aangeroepen wordt.
         private void UserLijst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UserLijst.SelectedIndex == 0)
@@ -147,6 +186,8 @@ namespace RDPKeuze
             }
         }
 
+        // Sectie gewijzigd: alle keuzes die daarvan afhangen (computer, gebruiker,
+        // adres, VNC-label, zoekveld) weer leegmaken zodat er niets verkeerds blijft staan.
         private void SectieLijst_SelectedIndexChanged(object sender, EventArgs e)
         {
             computerlijst.Items.Clear();
@@ -158,21 +199,28 @@ namespace RDPKeuze
             vnclabel.Visible = false;
         }
 
+        // Reload-knop: data.xml opnieuw lezen en de UI verversen.
         private void buttonReload_Click(object sender, EventArgs e)
         {
             UpdateUi();
         }
 
+        // Opent de GitHub-pagina van het project in de browser.
         private void linkLabel1_LinkGitHub(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _ = System.Diagnostics.Process.Start("https://github.com/majoor404/RDPKeuze");
         }
 
+        // Zodra het zoekveld actief wordt eerst alles verversen, zodat er in een
+        // actuele serverlijst gezocht wordt.
         private void textBoxZoek_Enter(object sender, EventArgs e)
         {
             UpdateUi();
         }
 
+        // Zoeken op plaatsnaam: toont de treffers in ZoekEnSelect en selecteert de
+        // gekozen treffer daarna in de sectie-/computerlijsten, zodat alleen op
+        // Start gedrukt hoeft te worden.
         private void GaZoeken(object sender, EventArgs e)
         {
             ZoekEnSelect zoekform = new ZoekEnSelect();
@@ -224,11 +272,13 @@ namespace RDPKeuze
             }
         }
 
+        // Na openen van het venster meteen in het zoekveld kunnen typen.
         private void FormRdpKeuze_Shown(object sender, EventArgs e)
         {
             _ = textBoxZoek.Focus();
         }
 
+        // Enter in het zoekveld = hetzelfde als op de Zoek-knop drukken.
         private void textBoxZoek_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r')
@@ -237,6 +287,8 @@ namespace RDPKeuze
             }
         }
 
+        // Aan/uit-vinkje "multischerm": wijzigt use multimon:i: van de actieve server
+        // en slaat data.xml direct op. Zonder actieve server wordt het vinkje teruggedraaid.
         private void multischerm_Click(object sender, EventArgs e)
         {
             if (LocatiePlaatst.Text != "")
@@ -259,6 +311,13 @@ namespace RDPKeuze
             }
         }
 
+        // Bouwt de volledige .rdp-tekst in de tekstbox voor de gekozen server:
+        //  - regel 1-3 vervangen door full address / username / domain,
+        //  - de rest komt ongewijzigd uit het template (ronald.rdp),
+        //  - use multimon:i: wordt aangepast aan de voorkeur van de server,
+        //  - het wachtwoord van de gebruiker gaat naar het klembord (timer wist het).
+        // Bij een VNC-server: alleen adres tonen, VNC-label zetten en het "wachtwoord"
+        // (de usernaam) op het klembord plaatsen.
         private void SchrijfDataIntextBox(server a)
         {
             if (a._domein != "VNC")
@@ -267,7 +326,7 @@ namespace RDPKeuze
 
                 multischerm.Checked = a._multiscreen;
 
-                textBoxTemp.Text = File.ReadAllText(datapath + "ronald.rdp", Encoding.ASCII);
+                textBoxTemp.Text = LeesRdpTemplate();
                 textBox.Clear();
 
                 textBox.AppendText("full address:s:" + a._adres);
@@ -325,6 +384,9 @@ namespace RDPKeuze
             }
         }
 
+        // Knop Wachtwoorden: opent het wachtwoordbeheer.
+        // DEBUG-builds gaan er direct in; een Release-build moet eerst het vaste
+        // master-wachtwoord in het tsbww-venster invoeren (dat hoort zo, niet weghalen).
         private void buttonWW_Click(object sender, EventArgs e)
         {
 #if DEBUG
@@ -342,6 +404,10 @@ namespace RDPKeuze
                     WachtWoordForm wacht = new WachtWoordForm();
                     wacht.ShowDialog(this);
                 }
+                else
+                {
+                    _ = MessageBox.Show("Verkeerd wachtwoord.");
+                }
 
             }
             testDialog.Dispose();
@@ -349,6 +415,8 @@ namespace RDPKeuze
 #endif
         }
 
+        // Timer afgebroken: wachtwoord van het klembord wissen en het groene lampje
+        // terugzetten, zodat het wachtwoord niet onbeperkt op het klembord blijft staan.
         private void timerResetWWopClipbord_Tick(object sender, EventArgs e)
         {
             timerResetWWopClipbord.Enabled = false;

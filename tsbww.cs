@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace RDPKeuze
 {
+    // Klein wachtwoordvenster dat alleen in Release-builds gebruikt wordt als poort
+    // voor het wachtwoordbeheer (zie buttonWW_Click in MainFormRdp). Dit venster vraagt
+    // het vaste master-wachtwoord; de controle zelf staat in het hoofdvenster.
     public partial class tsbww : Form
     {
         public tsbww()
@@ -17,6 +20,7 @@ namespace RDPKeuze
             InitializeComponent();
         }
 
+        // Bij openen het invoerveld leegmaken en focus geven.
         private void tsbww_Shown(object sender, EventArgs e)
         {
             textBox1.Text = "";
